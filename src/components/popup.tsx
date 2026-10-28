@@ -53,10 +53,14 @@ export function loader<T>(
   }
 }
 
+// An open trigger gets Base UI's focus guards as siblings; focusing one closes its popup.
+const childrenOf = (element: Element) =>
+  Array.from(element.children).filter((child) => !child.hasAttribute("data-base-ui-focus-guard"))
+
 const pathOf = (element: Element) => {
   const path: number[] = []
   for (let at = element; at.parentElement; at = at.parentElement)
-    path.unshift(Array.prototype.indexOf.call(at.parentElement.children, at))
+    path.unshift(childrenOf(at.parentElement).indexOf(at))
   return path
 }
 
@@ -70,7 +74,7 @@ function keepFocus(notify: () => void) {
   setTimeout(() => {
     if (focused!.isConnected || document.activeElement !== document.body) return
     const element = path.reduce<Element | undefined>(
-      (at, index) => at?.children[index],
+      (at, index) => (at ? childrenOf(at)[index] : undefined),
       document.documentElement,
     )
     if (element instanceof HTMLElement) element.focus({ preventScroll: true })
