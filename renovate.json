@@ -1,18 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "description": "Packages (bun.lock), action digests and flake.lock (lock file maintenance). Vendored files move with the geist package version or by hand, never by Renovate.",
-  "extends": [
-    "config:recommended",
-    ":semanticCommitTypeAll(chore)",
-    "helpers:pinGitHubActionDigests"
-  ],
-  "timezone": "Asia/Taipei",
-  "schedule": ["* 0-5 * * 1"],
-  "labels": ["dependencies"],
-  "commitBody": "Signed-off-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>",
+  "extends": ["github>zeabur-oss/.github"],
   "enabledManagers": ["bun", "github-actions", "nix"],
-  "minimumReleaseAge": "7 days",
-  "lockFileMaintenance": { "enabled": true, "schedule": ["* 0-5 * * 1"] },
   "packageRules": [
     {
       "description": "One pull request for compatible package updates; majors stay separate.",
@@ -27,8 +17,10 @@
       "enabled": false
     },
     {
-      "matchManagers": ["github-actions"],
-      "groupName": "github actions"
+      "description": "Bun comes from the nixpkgs in flake.lock (scripts/ci.sh checks they match): move packageManager with flake.lock, by hand.",
+      "matchManagers": ["bun"],
+      "matchDepTypes": ["packageManager"],
+      "enabled": false
     }
   ]
 }

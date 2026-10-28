@@ -17,21 +17,23 @@ Use your own name and email. When squashing, preserve other contributors' attrib
 do not add a sign-off on someone else's behalf. Check your branch against its base with:
 
 ```sh
-./scripts/check-dco.sh <base-rev> HEAD
+git log --format='%h %an <%ae>%n%(trailers:key=Signed-off-by)' <base-rev>..HEAD
 ```
 
 ## Setup and checks
 
 The development shell (`flake.nix`) has Bun and Node.js; run every command in it
 (`nix develop`, or `nix develop -c <command>`). Packages are managed with Bun: exact versions, a
-committed `bun.lock`, `minimumReleaseAge` of seven days and no install scripts (`bunfig.toml`). CI
-runs:
+committed `bun.lock`, `minimumReleaseAge` of seven days and no install scripts (`bunfig.toml`). Bun
+comes from the nixpkgs that `flake.lock` pins, and `packageManager` in `package.json` names the
+same version. CI runs every job of `scripts/ci.sh`, which enters the development shell itself;
+run one the same way locally:
 
 ```sh
-bun ci
-./scripts/check-fonts.sh
-bun run fmt:check && bun run lint && bun run typecheck && bun run test
-bun run build-storybook
+./scripts/ci.sh --list     # check, test, storybook
+./scripts/ci.sh check      # fonts, format, lint, types, fallow, shellcheck, actionlint, nixfmt
+./scripts/ci.sh test
+./scripts/ci.sh storybook  # bun run build-storybook
 ```
 
 Work in Storybook (`bun run storybook`, http://localhost:6006); switch light and dark in its

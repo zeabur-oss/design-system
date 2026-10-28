@@ -10,46 +10,16 @@ permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
+  # Every job is in scripts/ci.sh (`scripts/ci.sh --list`), which runs the same on any Linux machine
+  # with Nix; the shared workflow only checks out and installs Nix.
+  ci:
+    uses: zeabur-oss/.github/.github/workflows/ci.yml@9d500376d4e7202c9343656fb6b85dc2eba26dd3 # main
+    with:
+      # `fallow audit` compares HEAD with HEAD^ (on a pull request, the base branch).
+      fetch-depth: 2
   dco:
-    name: DCO
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-24.04
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Check commit sign-offs
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: ./scripts/check-dco.sh "$BASE_SHA" "$HEAD_SHA"
-
-  check:
-    name: Check
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-          # `fallow audit` compares HEAD with HEAD^ (on a pull request, the base branch).
-          fetch-depth: 2
-      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
-        with:
-          bun-version-file: package.json
-      - run: bun ci
-      - run: ./scripts/check-fonts.sh
-      - run: bun run fmt:check
-      - run: bun run lint
-      - run: bun run typecheck
-      - run: bun run test
-      - run: bun run fallow dead-code
-      - run: bun run fallow audit --base HEAD^
-      - run: bun run fallow health --report-only --css
-      - run: bun run build-storybook
+    uses: zeabur-oss/.github/.github/workflows/dco.yml@9d500376d4e7202c9343656fb6b85dc2eba26dd3 # main
