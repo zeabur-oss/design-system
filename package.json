@@ -1,6 +1,6 @@
 {
   "name": "@zeabur/design-system",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Zeabur's design system: components on Base UI, shadcn/ui-compatible theme, tokens, type roles, utilities and fonts for Tailwind CSS v4",
   "license": "Apache-2.0",
