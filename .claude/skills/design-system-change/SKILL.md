@@ -7,7 +7,9 @@ description: Change @zeabur/design-system — add or restyle a component, varian
 
 Rules are in `CONTRIBUTING.md` ("Components") and the README ("Tokens and rules"); read them first.
 Comments, commit messages, tests, new props or variants, and components that render collections
-follow [`STANDARDS.md`](STANDARDS.md).
+follow `zeabur-oss-standards` with [`STANDARDS.md`](STANDARDS.md) here; commits and pull requests
+follow `zeabur-oss-workflow`; packages follow `zeabur-oss-dependencies` (install:
+`npx skills add zeabur-oss/skills --skill <name>`; `skills-lock.json` pins them).
 
 ## Decide where the change belongs
 
