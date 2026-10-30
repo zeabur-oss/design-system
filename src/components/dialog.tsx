@@ -1,8 +1,18 @@
 import type { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
-import { cva, type VariantProps } from "class-variance-authority"
+import type { VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import XIcon from "~icons/ph/x"
 
+import {
+  dialogBackdropVariants,
+  dialogBodyVariants,
+  dialogCloseButtonVariants,
+  dialogContentVariants,
+  dialogDescriptionVariants,
+  dialogFooterVariants,
+  dialogHeaderVariants,
+  dialogTitleVariants,
+} from "../variants/dialog"
 import { PendingRoot, useLoadedPopups, useOpen, usePopups, type RootProps } from "./popup"
 
 function Dialog({
@@ -23,31 +33,6 @@ function Dialog({
   )
 }
 
-const dialogContentVariants = cva(
-  "fixed top-1/2 left-1/2 z-popup max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-lg border border-v2-border bg-popover text-popover-foreground shadow-xl outline-none",
-  {
-    variants: {
-      variant: {
-        default: "w-dialog dialog-motion",
-        sheet:
-          "top-0 left-0 h-svh w-sheet max-w-none translate-x-0 translate-y-0 rounded-none border-y-0 border-l-0 border-main bg-chrome sheet-motion-start",
-        panel:
-          "top-0 right-0 left-auto flex h-svh w-full max-w-none translate-x-0 translate-y-0 flex-col rounded-none border-y-0 border-r-0 sheet-motion-end sm:max-w-2xl",
-        wide: "flex max-h-dialog w-dialog max-w-3xl flex-col dialog-motion",
-        compact: "flex max-h-dialog w-dialog flex-col dialog-motion",
-      },
-      position: {
-        center: "",
-        top: "top-24 origin-top translate-y-0",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      position: "center",
-    },
-  },
-)
-
 function DialogContent({
   className,
   backdropClassName,
@@ -61,9 +46,7 @@ function DialogContent({
   const { Dialog: D } = parts
   return (
     <D.Portal>
-      <D.Backdrop
-        className={cn("fixed inset-0 z-popup bg-overlay overlay-motion", backdropClassName)}
-      />
+      <D.Backdrop className={cn(dialogBackdropVariants(), backdropClassName)} />
       <D.Popup
         data-slot="dialog-content"
         className={cn(dialogContentVariants({ variant, position, className }))}
@@ -72,16 +55,6 @@ function DialogContent({
     </D.Portal>
   )
 }
-
-const dialogHeaderVariants = cva("flex shrink-0 items-start justify-between gap-4 px-6", {
-  variants: {
-    variant: {
-      default: "pt-5",
-      panel: "border-b border-v2-border py-4",
-    },
-  },
-  defaultVariants: { variant: "default" },
-})
 
 function DialogHeader({
   className,
@@ -110,11 +83,7 @@ function DialogHeader({
 function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
   const { Dialog: D } = useLoadedPopups()
   return (
-    <D.Title
-      data-slot="dialog-title"
-      className={cn("type-heading text-main", className)}
-      {...props}
-    />
+    <D.Title data-slot="dialog-title" className={cn(dialogTitleVariants(), className)} {...props} />
   )
 }
 
@@ -123,21 +92,11 @@ function DialogDescription({ className, ...props }: DialogPrimitive.Description.
   return (
     <D.Description
       data-slot="dialog-description"
-      className={cn("text-sm text-secondary", className)}
+      className={cn(dialogDescriptionVariants(), className)}
       {...props}
     />
   )
 }
-
-const dialogBodyVariants = cva("min-h-0 min-w-0 flex-1 overflow-y-auto px-6", {
-  variants: {
-    variant: {
-      default: "pt-4 pb-6",
-      panel: "py-5",
-    },
-  },
-  defaultVariants: { variant: "default" },
-})
 
 function DialogBody({
   className,
@@ -155,14 +114,7 @@ function DialogBody({
 
 function DialogFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div
-      data-slot="dialog-footer"
-      className={cn(
-        "flex shrink-0 items-center justify-end gap-2 border-t border-v2-border bg-v2-surface-hover px-6 py-3",
-        className,
-      )}
-      {...props}
-    />
+    <div data-slot="dialog-footer" className={cn(dialogFooterVariants(), className)} {...props} />
   )
 }
 
@@ -174,13 +126,7 @@ function DialogClose(props: DialogPrimitive.Close.Props) {
 function DialogCloseButton({ label = "Close", className }: { label?: string; className?: string }) {
   const { Dialog: D } = useLoadedPopups()
   return (
-    <D.Close
-      aria-label={label}
-      className={cn(
-        "flex size-6 shrink-0 items-center justify-center rounded text-secondary transition-colors hover:bg-v2-surface-hover hover:text-main",
-        className,
-      )}
-    >
+    <D.Close aria-label={label} className={cn(dialogCloseButtonVariants(), className)}>
       <XIcon className="size-4" aria-hidden="true" />
     </D.Close>
   )
