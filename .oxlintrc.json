@@ -12,7 +12,7 @@
       "componentImports": [
         "^\\./[a-z-]+$",
         "^\\.\\./src/components/",
-        "^@zeabur/design-system/components/"
+        "^@zeabur-oss/design-system/components/"
       ],
       "ignoreImports": ["^\\./popup(-parts)?$"]
     }

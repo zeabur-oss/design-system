@@ -10,7 +10,7 @@ at 0.1.1. It supersedes 0.1.0, whose GitHub Release stays published but is not m
 
 ### Added
 
-- The package is published to npm as `@zeabur/design-system`, from each version tag.
+- The package is published to npm as `@zeabur-oss/design-system`, from each version tag.
 - `Skeleton` takes `delay="none"` for a skeleton that shows at once, such as one that replaces a
   page after the router has already waited.
 
