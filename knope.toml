@@ -1,0 +1,19 @@
+# Change files in .changeset/ and release pull requests (CONTRIBUTING.md, "Changelog and releases").
+[package]
+versioned_files = ["package.json"]
+changelog = "CHANGELOG.md"
+
+[changes]
+ignore_conventional_commits = true
+
+[[workflows]]
+name = "prepare-release"
+
+[[workflows.steps]]
+type = "PrepareRelease"
+
+[[workflows]]
+name = "document-change"
+
+[[workflows.steps]]
+type = "CreateChangeFile"

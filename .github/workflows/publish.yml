@@ -35,8 +35,12 @@ jobs:
         run: |
           [[ "v$(node -p 'require("./package.json").version')" == "$VERSION" ]] ||
             { echo "::error::package.json is not at $VERSION"; exit 1; }
-          grep -qF "## [${VERSION#v}]" CHANGELOG.md ||
-            { echo "::error::CHANGELOG.md has no section for $VERSION"; exit 1; }
+          # A pre-release has its own section, or else reads that of its normal version.
+          plain="${VERSION#v}"
+          awk -v v="$plain" -v n="${plain%%-*}" '
+            $1 == "##" && ($2 == v || $2 == "[" v "]" || $2 == n || $2 == "[" n "]") { f = 1 }
+            END { exit !f }
+          ' CHANGELOG.md || { echo "::error::CHANGELOG.md has no section ## $plain"; exit 1; }
           git merge-base --is-ancestor HEAD origin/main ||
             { echo "::error::$VERSION is not on main"; exit 1; }
       - name: Publish

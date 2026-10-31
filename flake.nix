@@ -35,6 +35,8 @@
 
               shellcheck
               actionlint
+              # Change files and release pull requests (knope.toml).
+              knope
 
               self.formatter.${system}
             ];
