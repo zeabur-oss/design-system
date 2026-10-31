@@ -146,10 +146,10 @@ ends.
 
 ## Use in a React app
 
-Add it as a Git dependency pinned to a full commit (a tag can move; a commit cannot):
+Add it from npm, pinned to a version:
 
 ```sh
-bun add 'github:zeabur-oss/design-system#<commit>'
+bun add --exact @zeabur/design-system
 ```
 
 The package ships its sources (TSX and CSS) and has no build step, so the app compiles it. The app

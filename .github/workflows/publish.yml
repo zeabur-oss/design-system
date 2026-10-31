@@ -1,0 +1,48 @@
+name: Publish
+
+# Tag vX.Y.Z or vX.Y.Z-<pre-release> on main: publish @zeabur/design-system to npm through npm's
+# trusted publishing, which needs no token and adds provenance. A pre-release goes under the `next`
+# dist-tag, so `latest` stays on the last release.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-slim
+    timeout-minutes: 10
+    environment: npm
+    permissions:
+      contents: read
+      id-token: write # npm trusted publishing and provenance
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      # npm, not `bun publish`: Bun has neither trusted publishing nor provenance. Trusted
+      # publishing needs npm 11.5.1 or later.
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: The tag is package.json's version, with a changelog section, on main
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: |
+          [[ "v$(node -p 'require("./package.json").version')" == "$VERSION" ]] ||
+            { echo "::error::package.json is not at $VERSION"; exit 1; }
+          grep -qF "## [${VERSION#v}]" CHANGELOG.md ||
+            { echo "::error::CHANGELOG.md has no section for $VERSION"; exit 1; }
+          git merge-base --is-ancestor HEAD origin/main ||
+            { echo "::error::$VERSION is not on main"; exit 1; }
+      - name: Publish
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: |
+          tag=latest
+          [[ "$VERSION" == *-* ]] && tag=next
+          npm publish --tag "$tag"
