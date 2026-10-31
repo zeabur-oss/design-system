@@ -6,6 +6,7 @@ import { createElement as h } from "react"
 import { renderToStaticMarkup } from "react-dom/server"
 
 import { usePresence } from "./presence"
+import { Skeleton } from "./skeleton"
 import { SwapText } from "./swap-text"
 
 const read = (path: string) => readFileSync(resolve(import.meta.dirname, "../..", path), "utf8")
@@ -66,5 +67,20 @@ describe("motion", () => {
     const reduce = base.slice(base.indexOf("@media (prefers-reduced-motion: reduce)"))
     expect(reduce).toContain("animation-iteration-count: 1 !important")
     expect(reduce.slice(0, reduce.indexOf("\n}\n"))).not.toContain("transition-duration")
+  })
+
+  test("a skeleton without delay fades in at once, then pulses as the default does", () => {
+    const tokens = read("src/tokens.css")
+    const animation = (name: string) =>
+      tokens
+        .match(new RegExp(`--animate-${name}:([^;]+);`))![1]!
+        .split(",")
+        .map((part) => part.trim().split(/\s+/))
+    const [defaultIn, defaultPulse] = animation("skeleton")
+    const [nowIn, nowPulse] = animation("skeleton-now")
+    expect(nowIn).toEqual(defaultIn!.filter((word) => word !== "300ms"))
+    expect(nowPulse).toEqual([...defaultPulse!.slice(0, 3), "150ms", "infinite"])
+    expect(renderToStaticMarkup(h(Skeleton, { delay: "none" }))).toContain("animate-skeleton-now")
+    expect(renderToStaticMarkup(h(Skeleton))).toMatch(/animate-skeleton(?!-)/)
   })
 })

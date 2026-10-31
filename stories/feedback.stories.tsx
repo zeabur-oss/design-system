@@ -200,6 +200,7 @@ export const Loading: Story = {
         <Skeleton className="h-4 w-2/3" />
         <Skeleton className="h-4 w-1/2" />
         <Skeleton variant="card" className="h-24" />
+        <Skeleton delay="none" className="h-4 w-2/3" />
       </div>
     </div>
   ),

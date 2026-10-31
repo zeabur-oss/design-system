@@ -366,6 +366,8 @@
   --ease-popup: var(--ease-site);
   --animate-skeleton:
     skeleton-in 150ms ease-out 300ms backwards, skeleton-pulse 1.4s ease-in-out 450ms infinite;
+  --animate-skeleton-now:
+    skeleton-in 150ms ease-out backwards, skeleton-pulse 1.4s ease-in-out 150ms infinite;
 
   --shadow-segmented: 0 1px 2px rgb(0 0 0 / 0.06);
   --shadow-switch-track: inset 0 1px 3px rgb(0 0 0 / 0.35);
