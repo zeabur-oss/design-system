@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version instead of the one the change files give (0.2.0); empty for theirs'
-        default: ''
+        description: "Version instead of the one the change files give (0.2.0); empty for theirs"
+        default: ""
   push:
     branches: [main]
 
