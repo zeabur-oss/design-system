@@ -3,7 +3,7 @@
 All notable changes to this project are documented here. Versions follow
 [Semantic Versioning](https://semver.org/).
 
-## [0.1.1]
+## 0.1.1
 
 The first version under the release process shared by all zeabur-oss repositories, which restart
 at 0.1.1. It supersedes 0.1.0, whose GitHub Release stays published but is not maintained.
@@ -30,9 +30,6 @@ at 0.1.1. It supersedes 0.1.0, whose GitHub Release stays published but is not m
 
 - `scripts/check-dco.sh`: the shared DCO workflow checks sign-offs.
 
-## [0.1.0]
+## 0.1.0
 
 First release: React components on Base UI and Tailwind CSS, with Zeabur's tokens and fonts.
-
-[0.1.1]: https://github.com/zeabur-oss/design-system/compare/v0.1.0...v0.1.1
-[0.1.0]: https://github.com/zeabur-oss/design-system/releases/tag/v0.1.0
