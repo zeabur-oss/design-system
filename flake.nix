@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # The base shell of every zeabur-oss repository: Bun, the release tools and the shared linters.
+    oss = {
+      url = "github:zeabur-oss/.github";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -29,15 +34,8 @@
         { pkgs, system }:
         {
           default = pkgs.mkShell {
-            packages = with pkgs; [
-              bun
-              nodejs
-
-              shellcheck
-              actionlint
-
-              self.formatter.${system}
-            ];
+            inputsFrom = [ inputs.oss.devShells.${system}.base ];
+            packages = [ pkgs.nodejs ];
 
             env = {
               # Chromium for the covers (covers/render.ts). playwright-core in covers/package.json
