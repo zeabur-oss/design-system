@@ -69,18 +69,26 @@ describe("motion", () => {
     expect(reduce.slice(0, reduce.indexOf("\n}\n"))).not.toContain("transition-duration")
   })
 
-  test("a skeleton without delay fades in at once, then pulses as the default does", () => {
+  test("a skeleton without delay starts fading in at once and otherwise moves as the default", () => {
     const tokens = read("src/tokens.css")
-    const animation = (name: string) =>
-      tokens
-        .match(new RegExp(`--animate-${name}:([^;]+);`))![1]!
-        .split(",")
-        .map((part) => part.trim().split(/\s+/))
-    const [defaultIn, defaultPulse] = animation("skeleton")
-    const [nowIn, nowPulse] = animation("skeleton-now")
-    expect(nowIn).toEqual(defaultIn!.filter((word) => word !== "300ms"))
-    expect(nowPulse).toEqual([...defaultPulse!.slice(0, 3), "150ms", "infinite"])
-    expect(renderToStaticMarkup(h(Skeleton, { delay: "none" }))).toContain("animate-skeleton-now")
-    expect(renderToStaticMarkup(h(Skeleton))).toMatch(/animate-skeleton(?!-)/)
+    // Each animation of the skeleton as {name, duration, delay}, read from the token its class uses.
+    const animations = (props: Parameters<typeof Skeleton>[0]) => {
+      const name = /animate-([\w-]+)/.exec(renderToStaticMarkup(h(Skeleton, props)))![1]
+      const value = new RegExp(`--animate-${name}:([^;]+);`).exec(tokens)![1]!
+      return value.split(",").map((part) => {
+        const [animation, ...rest] = part.trim().split(/\s+/)
+        const [duration = 0, delay = 0] = rest.filter((w) => /^[\d.]+m?s$/.test(w)).map(ms)
+        return { animation, duration, delay, rest: rest.filter((w) => !/^[\d.]+m?s$/.test(w)) }
+      })
+    }
+    const ms = (time: string) =>
+      time.endsWith("ms") ? Number.parseFloat(time) : Number.parseFloat(time) * 1000
+    const [fadeIn, pulse] = animations({ delay: "none" })
+    const [defaultIn, defaultPulse] = animations({})
+    expect(fadeIn!.delay).toBe(0)
+    expect(pulse!.delay).toBe(fadeIn!.duration)
+    expect({ ...fadeIn, delay: 0 }).toEqual({ ...defaultIn, delay: 0 })
+    expect({ ...pulse, delay: 0 }).toEqual({ ...defaultPulse, delay: 0 })
+    expect(defaultPulse!.delay).toBe(defaultIn!.delay + defaultIn!.duration)
   })
 })
