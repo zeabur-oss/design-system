@@ -162,7 +162,7 @@ plugins: [
   react({
     // The React Compiler skips node_modules unless `sources` names the files.
     compiler: { sources: [resolve(import.meta.dirname, "src") + "/", "/node_modules/@zeabur-oss/design-system/"] },
-    exclude: /\/node_modules\/(?!@zeabur\/design-system\/)/,
+    exclude: /\/node_modules\/(?!@zeabur-oss\/design-system\/)/,
   }),
   tailwindcss(),
   // `~icons/ph/<name>`: Phosphor icons, as the components import them.
