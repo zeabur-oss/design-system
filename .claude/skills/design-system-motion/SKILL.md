@@ -1,6 +1,6 @@
 ---
 name: design-system-motion
-description: Decide whether something in a Zeabur UI should animate, and how — popups, dialogs, sheets, tooltips, toasts, collapsibles, a changing status or number, loading — with the design system's tokens and motion utilities, reduced motion, and how to verify it. Use when adding or changing a transition or animation here or in an app that pins @zeabur/design-system.
+description: Decide whether something in a Zeabur UI should animate, and how — popups, dialogs, sheets, tooltips, toasts, collapsibles, a changing status or number, loading — with the design system's tokens and motion utilities, reduced motion, and how to verify it. Use when adding or changing a transition or animation here or in an app that pins @zeabur-oss/design-system.
 ---
 
 # Motion in the design system

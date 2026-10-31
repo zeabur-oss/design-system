@@ -109,8 +109,8 @@ only `src/tokens.css` names them.
   comment that disables nothing fails too.
 
 Apps run the same rules on their code (the Zeabur app's `.oxlintrc.json` uses this setup with
-`componentImports: ["^@zeabur/design-system/components/"]`). The package exports the `zeabur/*`
-rules as `@zeabur/design-system/lint`, for an app's `jsPlugins`.
+`componentImports: ["^@zeabur-oss/design-system/components/"]`). The package exports the `zeabur/*`
+rules as `@zeabur-oss/design-system/lint`, for an app's `jsPlugins`.
 
 ### Motion
 
@@ -149,7 +149,7 @@ ends.
 Add it from npm, pinned to a version:
 
 ```sh
-bun add --exact @zeabur/design-system
+bun add --exact @zeabur-oss/design-system
 ```
 
 The package ships its sources (TSX and CSS) and has no build step, so the app compiles it. The app
@@ -161,7 +161,7 @@ config:
 plugins: [
   react({
     // The React Compiler skips node_modules unless `sources` names the files.
-    compiler: { sources: [resolve(import.meta.dirname, "src") + "/", "/node_modules/@zeabur/design-system/"] },
+    compiler: { sources: [resolve(import.meta.dirname, "src") + "/", "/node_modules/@zeabur-oss/design-system/"] },
     exclude: /\/node_modules\/(?!@zeabur\/design-system\/)/,
   }),
   tailwindcss(),
@@ -171,7 +171,7 @@ plugins: [
 // The pre-bundler runs no plugins, so it could not resolve `~icons/…`. What the design system
 // imports is not pre-bundled either then, and Base UI reaches CommonJS: list it in `include`.
 optimizeDeps: {
-  exclude: ["@zeabur/design-system"],
+  exclude: ["@zeabur-oss/design-system"],
   include: ["@base-ui/react/select", "@base-ui/react/menu", "cn", "class-variance-authority" /* … */],
 },
 ```
@@ -184,14 +184,14 @@ components' classes):
 
 ```css
 @import "tailwindcss";
-@import "@zeabur/design-system";
+@import "@zeabur-oss/design-system";
 ```
 
 and the components one by one:
 
 ```tsx
-import { Badge } from "@zeabur/design-system/components/badge"
-import { Button } from "@zeabur/design-system/components/button"
+import { Badge } from "@zeabur-oss/design-system/components/badge"
+import { Button } from "@zeabur-oss/design-system/components/button"
 ```
 
 Wrap the app in `TooltipProvider` (`components/tooltip`). The theme is light by default and dark
@@ -203,7 +203,7 @@ adds a `<style>` element).
 
 The components, their props and variants, the tokens and the utilities of `@engawahq/design-system`
 are all here under the same names, so an app moves by changing its import prefix
-(`@engawahq/design-system` → `@zeabur/design-system`) and its dependency. What it looks like
+(`@engawahq/design-system` → `@zeabur-oss/design-system`) and its dependency. What it looks like
 changes to Zeabur's. Not carried over: `Mosaic` and `Tile` (`Illustration` keeps its states and
 ignores `seed`), and Tabs' `line` variant and `TabsMore`.
 
@@ -217,7 +217,7 @@ are inlined).
 ```css
 @import "tailwindcss" source(none);
 @source "../templates";
-@import "@zeabur/design-system/tokens.css";
+@import "@zeabur-oss/design-system/tokens.css";
 
 /* Follow the operating system: `dark:` by media query, the tokens by color-scheme. */
 @custom-variant dark (@media (prefers-color-scheme: dark));
@@ -237,12 +237,12 @@ are inlined).
 To switch by a class instead, as the React app does, leave out the two rules after the import,
 write `@custom-variant dark (&:is(.dark *));` and put `class="dark"` on `<html>`.
 
-The templates use the components' classes from `@zeabur/design-system/variants/<name>`. These
+The templates use the components' classes from `@zeabur-oss/design-system/variants/<name>`. These
 modules hold the `cva` functions of the components and import no React, so a build script can
 call them and write the classes into the templates:
 
 ```ts
-import { buttonVariants } from "@zeabur/design-system/variants/button"
+import { buttonVariants } from "@zeabur-oss/design-system/variants/button"
 
 buttonVariants({ variant: "primary", size: "lg" })
 ```
@@ -259,8 +259,8 @@ Write `brand-logo h-5` for the logo and `type-label` for a section label.
 | `src/tokens.css`           | Palettes, semantic and component tokens, status, the shadcn/ui mapping, type scale, motion, shadows, layers, named sizes and the Tailwind theme |
 | `src/utilities.css`        | Type roles, button surfaces, navigation rows, motion, patterns, brand masks                                                                     |
 | `src/base.css`             | The page's ground and text, focus rings, selection, scrollbars, reduced motion                                                                  |
-| `src/components/`          | The components (`@zeabur/design-system/components/<name>`)                                                                                      |
-| `src/variants/`            | The components' classes as `cva` functions, without React (`@zeabur/design-system/variants/<name>`)                                             |
+| `src/components/`          | The components (`@zeabur-oss/design-system/components/<name>`)                                                                                  |
+| `src/variants/`            | The components' classes as `cva` functions, without React (`@zeabur-oss/design-system/variants/<name>`)                                         |
 | `vendor/shadcn/shadcn.css` | shadcn/ui's base styles (keyframes, `data-*` variants)                                                                                          |
 | `vendor/geist/`            | Geist and Geist Mono, their licence                                                                                                             |
 | `vendor/zeabur/`           | The Zeabur logo and mark (see "Trademarks")                                                                                                     |

@@ -1,6 +1,6 @@
 ---
 name: design-system-change
-description: Change @zeabur/design-system — add or restyle a component, variant or token, adjust lint rules — and carry the change into the apps that pin it (zeabur/web, Zeabur Identity). Use for any change in this repository or when an app needs a treatment the design system lacks.
+description: Change @zeabur-oss/design-system — add or restyle a component, variant or token, adjust lint rules — and carry the change into the apps that pin it (zeabur/web, Zeabur Identity). Use for any change in this repository or when an app needs a treatment the design system lacks.
 ---
 
 # Changing the design system
@@ -43,11 +43,11 @@ follow `zeabur-oss-workflow`; packages follow `zeabur-oss-dependencies` (install
 - **zeabur/web**: pack this repository's committed state and install the tarball:
   ```sh
   git archive HEAD | tar -x -C "$tmp" && (cd "$tmp" && bun pm pack --destination "$out")
-  # in zeabur/web: point @zeabur/design-system at the tarball, then
+  # in zeabur/web: point @zeabur-oss/design-system at the tarball, then
   bun install
   ```
   Bun caches tarballs by name and version, so a repack with the same version is served stale:
-  remove the cached `@zeabur/design-system` entry under `~/.bun/install/cache/` and the `sha512-…`
+  remove the cached `@zeabur-oss/design-system` entry under `~/.bun/install/cache/` and the `sha512-…`
   integrity of that line in `web/bun.lock`, then install. Never commit `web/package.json` or
   `web/bun.lock` pointing at a local path.
 - **Identity** depends on the package in `ui/package.json`, as web does. Its build generates the
