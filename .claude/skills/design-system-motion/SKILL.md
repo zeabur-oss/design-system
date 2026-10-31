@@ -35,7 +35,7 @@ overshoot, no new curve.
 | Disclosure chevron              | `CollapsibleTrigger variant="disclosure"`         | 250           |
 | Status or label that changes    | `SwapText`                                        | 150, enter    |
 | Number that changes             | `SwapText variant="number"`                       | 150, enter    |
-| Loading                         | `Skeleton` (appears after 300ms)                  | 150 fade      |
+| Loading                         | `Skeleton` (after 300ms; `delay="none"` at once)  | 150 fade      |
 | Element Base UI does not mount  | `usePresence(open)` and spread its `props`        | its utility's |
 
 Base UI components already carry these. Use the utility rather than writing `transition-*` and

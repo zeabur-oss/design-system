@@ -6,6 +6,7 @@ import { createElement as h } from "react"
 import { renderToStaticMarkup } from "react-dom/server"
 
 import { usePresence } from "./presence"
+import { Skeleton } from "./skeleton"
 import { SwapText } from "./swap-text"
 
 const read = (path: string) => readFileSync(resolve(import.meta.dirname, "../..", path), "utf8")
@@ -66,5 +67,9 @@ describe("motion", () => {
     const reduce = base.slice(base.indexOf("@media (prefers-reduced-motion: reduce)"))
     expect(reduce).toContain("animation-iteration-count: 1 !important")
     expect(reduce.slice(0, reduce.indexOf("\n}\n"))).not.toContain("transition-duration")
+  })
+
+  test("a skeleton without delay uses the animation that starts at once", () => {
+    expect(renderToStaticMarkup(h(Skeleton, { delay: "none" }))).toContain("animate-skeleton-now")
   })
 })
