@@ -6,6 +6,9 @@ on:
       version:
         description: "Version instead of the one the change files give (0.2.0); empty for theirs"
         default: ""
+      prerelease:
+        description: "Pre-release label (rc, beta) for vX.Y.Z-<label>.N; empty for a normal release"
+        default: ""
   push:
     branches: [main]
 
@@ -18,8 +21,9 @@ concurrency:
 
 jobs:
   release-pr:
-    uses: zeabur-oss/.github/.github/workflows/release-pr.yml@f6443ea2031ad2f52962303a71e41c9a98bfde26 # main
+    uses: zeabur-oss/.github/.github/workflows/release-pr.yml@d88857f7963193aa366ee81a290a26c0501824ee # main
     with:
       version: ${{ inputs.version }}
+      prerelease: ${{ inputs.prerelease }}
     secrets:
       private-key: ${{ secrets.ZEABUR_OSS_BOT_PRIVATE_KEY }}
