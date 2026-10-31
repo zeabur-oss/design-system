@@ -27,7 +27,7 @@ jobs:
       # publishing needs npm 11.5.1 or later.
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 24
+          node-version: 26
           package-manager-cache: false
       - name: The tag is package.json's version, with a changelog section, on main
         env:
