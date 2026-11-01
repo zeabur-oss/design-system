@@ -270,8 +270,7 @@ Write `brand-logo h-5` for the logo and `type-label` for a section label.
 
 Files in `vendor/` are copied verbatim and change only as a whole:
 
-- `vendor/geist`: from the `geist` npm package at the version in `vendor/geist/VENDORED` (also a dev
-  dependency). Check with `./scripts/check-fonts.sh` after `bun ci`.
+- `vendor/geist`: from the `geist` npm package, release in `vendor/geist/VENDORED`.
 - `vendor/shadcn`: shadcn/ui's `shadcn/tailwind.css`, release in `vendor/shadcn/VENDORED`.
 - `vendor/zeabur`: the logo and mark from Zeabur's dashboard and zeabur.com; `src/brand.test.ts`
   checks that the components and the masks draw them unchanged.

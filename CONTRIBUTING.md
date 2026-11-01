@@ -119,8 +119,7 @@ bot tag the merge commit, and the tag publishes the package to npm (`next` for a
 
 ## Vendored files
 
-`vendor/` holds files copied verbatim (see the README). After changing one, run
-`./scripts/check-fonts.sh` and `bun run test`. When changing workflow or shell files, also run
+`vendor/` holds files copied verbatim (see the README). After changing one, run `bun run test`. When changing workflow or shell files, also run
 `actionlint` and `shellcheck scripts/*.sh`.
 
 ## Trademarks
