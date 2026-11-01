@@ -1,7 +1,6 @@
 # Change files in .changeset/ and release pull requests (CONTRIBUTING.md, "Changelog and releases").
 [package]
-# A regex, so knope replaces the version alone and leaves the rest of package.json as it is.
-versioned_files = [{ path = "package.json", regex = '"version": "(?<version>[^"]+)"' }]
+versioned_files = ["package.json"]
 changelog = "CHANGELOG.md"
 
 [changes]
@@ -12,6 +11,11 @@ name = "prepare-release"
 
 [[workflows.steps]]
 type = "PrepareRelease"
+
+# knope writes package.json through its JSON serializer, which drops the final newline.
+[[workflows.steps]]
+type = "Command"
+command = "bun run fmt package.json"
 
 [[workflows]]
 name = "document-change"
