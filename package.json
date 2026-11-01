@@ -69,7 +69,7 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.1.2",
-    "@zeabur-oss/release": "github:zeabur-oss/.github#a0e7fee556f7d2e9bebfea0de11b4391a427fea7",
+    "@zeabur-oss/release": "github:zeabur-oss/.github#2ff52ccf5624b0d4ddd24174afd9f2ad1e252d38",
     "class-variance-authority": "0.7.1",
     "cn": "0.5.0",
     "geist": "1.8.1",
