@@ -1,6 +1,6 @@
 {
   "name": "@zeabur-oss/design-system",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Zeabur's design system: components on Base UI, shadcn/ui-compatible theme, tokens, type roles, utilities and fonts for Tailwind CSS v4",
   "license": "Apache-2.0",
   "repository": {
