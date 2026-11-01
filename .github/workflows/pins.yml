@@ -6,7 +6,7 @@ name: Pins
 # pins alone.
 on:
   schedule:
-    - cron: '0 17 * * 0'
+    - cron: "0 17 * * 0"
   repository_dispatch:
     types: [zeabur-oss-github]
   workflow_dispatch:
