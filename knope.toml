@@ -1,6 +1,7 @@
 # Change files in .changeset/ and release pull requests (CONTRIBUTING.md, "Changelog and releases").
 [package]
-versioned_files = ["package.json"]
+# A regex, so knope replaces the version alone and leaves the rest of package.json as it is.
+versioned_files = [{ path = "package.json", regex = '"version": "(?<version>[^"]+)"' }]
 changelog = "CHANGELOG.md"
 
 [changes]
