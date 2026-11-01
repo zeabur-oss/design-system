@@ -1,7 +1,7 @@
 # Geist and Geist Mono (SIL Open Font License 1.1, LICENSE.txt), copied verbatim from the npm package
-# geist@1.8.1 (a devDependency, so bun.lock pins it). scripts/check-fonts.sh compares them with
+# geist@1.8.2 (a devDependency, so bun.lock pins it). scripts/check-fonts.sh compares them with
 # node_modules/geist; change them only by moving that version.
-package = geist@1.8.1
+package = geist@1.8.2
 Geist-Variable.woff2 = dist/fonts/geist-sans/Geist-Variable.woff2
 Geist-Italic-Variable.woff2 = dist/fonts/geist-sans/Geist-Italic[wght].woff2
 GeistMono-Variable.woff2 = dist/fonts/geist-mono/GeistMono-Variable.woff2
