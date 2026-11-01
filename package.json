@@ -72,7 +72,6 @@
     "@zeabur-oss/release": "github:zeabur-oss/.github#9f67bcbecd22239636877a838d7359278a0e765e",
     "class-variance-authority": "0.7.1",
     "cn": "0.5.0",
-    "geist": "1.8.2",
     "oxfmt": "0.74.0",
     "oxlint": "1.89.0",
     "react": "19.3.1",

@@ -46,7 +46,6 @@ case "$job" in
     shellcheck scripts/*.sh
     actionlint
     bun ci
-    ./scripts/check-fonts.sh
     bun run fmt:check
     bun run lint
     bun run typecheck

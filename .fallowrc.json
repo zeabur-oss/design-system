@@ -4,9 +4,8 @@
   "workspaces": { "patterns": ["covers"] },
   "entry": ["covers/render.ts"],
   "dynamicallyLoaded": ["covers/*/cover.ts", "covers/**/*.css"],
-  // unplugin-icons loads these by name; `~icons/…` is its virtual module. scripts/check-fonts.sh
-  // compares vendor/geist with the geist package.
-  "ignoreDependencies": ["@svgr/plugin-jsx", "@iconify-json/ph", "~icons", "geist"],
+  // unplugin-icons loads these by name; `~icons/…` is its virtual module.
+  "ignoreDependencies": ["@svgr/plugin-jsx", "@iconify-json/ph", "~icons"],
   // popup.tsx loads this module whole through its loader.
   "ignoreExports": [{ "file": "src/components/popup-parts.ts", "exports": ["*"] }],
   "ignorePatterns": ["storybook-static/**"],
