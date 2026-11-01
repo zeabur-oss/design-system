@@ -24,8 +24,6 @@ function CopyInput({
   const { copied, copy } = useCopy(value, onCopy, onCopyError)
   return (
     <div data-slot="copy-input" className={cn("relative", className)}>
-      {/* oxlint-disable-next-line shadcn/require-static-classes -- the caller's own classes,
-          which its lint checks where it writes them */}
       <Input readOnly value={value} mono endSlot className={inputClassName} />
       <button
         type="button"

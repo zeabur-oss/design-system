@@ -53,8 +53,6 @@ function Drawer({
             )}
           </DialogHeader>
         )}
-        {/* oxlint-disable-next-line shadcn/require-static-classes -- the caller's own classes,
-            which its lint checks where it writes them */}
         <DialogBody variant="panel" className={bodyClassName}>
           {children}
         </DialogBody>
