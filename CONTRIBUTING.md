@@ -91,6 +91,32 @@ Every app pins this repository to a commit, so a change reaches an app only when
 its pin. Before you open a pull request, try the change in the apps that use it (`bun pm pack`
 here, then depend on the tarball, or `bun link`).
 
+## Changelog and releases
+
+A pull request that changes what an app sees adds a change file, written for the people who use
+the package. `nix develop -c knope document-change` asks for its level and summary and writes it
+to `.changeset/`; add more paragraphs under the summary when it needs them:
+
+```md
+---
+default: minor
+---
+
+# `Skeleton` takes `delay="none"`
+
+For a skeleton that replaces a page after the router has already waited.
+```
+
+Choose the level by the effect on apps: `major` when an app has to change (`minor` before 1.0),
+`minor` for something new, `patch` for a fix. A change only to CI or tooling needs none, even when
+its title has `!`; label the pull request `changelog: none` when its title is `feat`, `fix` or
+`perf` and apps see no difference. The Changeset check enforces this.
+
+A maintainer releases by running the Release pull request workflow, with `prerelease: rc` for a
+release candidate: knope turns the change files into the next `CHANGELOG.md` section and the
+version in `package.json`, and zeabur-oss-bot opens `chore(release): vX.Y.Z`. Merging it makes the
+bot tag the merge commit, and the tag publishes the package to npm (`next` for a pre-release).
+
 ## Vendored files
 
 `vendor/` holds files copied verbatim (see the README). After changing one, run

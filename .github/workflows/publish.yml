@@ -35,8 +35,8 @@ jobs:
         run: |
           [[ "v$(node -p 'require("./package.json").version')" == "$VERSION" ]] ||
             { echo "::error::package.json is not at $VERSION"; exit 1; }
-          grep -qF "## [${VERSION#v}]" CHANGELOG.md ||
-            { echo "::error::CHANGELOG.md has no section for $VERSION"; exit 1; }
+          grep -qF "## ${VERSION#v} (" CHANGELOG.md ||
+            { echo "::error::CHANGELOG.md has no section ## ${VERSION#v} (date)"; exit 1; }
           git merge-base --is-ancestor HEAD origin/main ||
             { echo "::error::$VERSION is not on main"; exit 1; }
       - name: Publish
