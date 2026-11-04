@@ -17,7 +17,7 @@
       "enabled": false
     },
     {
-      "description": "Bun comes from the nixpkgs in flake.lock (scripts/ci.sh checks they match): move packageManager with flake.lock, by hand.",
+      "description": "Bun comes from the nixpkgs in flake.lock (scripts/ci/check.sh checks they match): move packageManager with flake.lock, by hand.",
       "matchManagers": ["bun"],
       "matchDepTypes": ["packageManager"],
       "enabled": false

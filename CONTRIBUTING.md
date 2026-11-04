@@ -26,14 +26,13 @@ The development shell (`flake.nix`) has Bun and Node.js; run every command in it
 (`nix develop`, or `nix develop -c <command>`). Packages are managed with Bun: exact versions, a
 committed `bun.lock`, `minimumReleaseAge` of seven days and no install scripts (`bunfig.toml`). Bun
 comes from the nixpkgs that `flake.lock` pins, and `packageManager` in `package.json` names the
-same version. CI runs every job of `scripts/ci.sh`, which enters the development shell itself;
-run one the same way locally:
+same version. Each CI job in `.github/workflows/ci.yml` runs `scripts/ci/<job>.sh` in the
+development shell; run one the same way locally:
 
 ```sh
-./scripts/ci.sh --list     # check, test, storybook
-./scripts/ci.sh check      # fonts, format, lint, types, fallow, shellcheck, actionlint, nixfmt
-./scripts/ci.sh test
-./scripts/ci.sh storybook  # bun run build-storybook
+nix develop -c scripts/ci/check.sh      # bun version, format, lint, types, fallow, shellcheck, actionlint, nixfmt
+nix develop -c scripts/ci/test.sh
+nix develop -c scripts/ci/storybook.sh  # bun run build-storybook
 ```
 
 Work in Storybook (`bun run storybook`, http://localhost:6006); switch light and dark in its

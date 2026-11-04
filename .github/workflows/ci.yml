@@ -1,5 +1,6 @@
 name: CI
 
+# Each job runs scripts/ci/<job>.sh in the Nix dev shell, the same as locally.
 on:
   push:
     branches: [main]
@@ -14,12 +15,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Every job is in scripts/ci.sh (`scripts/ci.sh --list`), which runs the same on any Linux machine
-  # with Nix; the shared workflow only checks out and installs Nix.
-  ci:
-    uses: zeabur-oss/.github/.github/workflows/ci.yml@6ab106525ce16169ab0ecfebe4b0248e096797fa # main
-    with:
-      # `fallow audit` compares HEAD with HEAD^ (on a pull request, the base branch).
-      fetch-depth: 2
+  check:
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          # fallow audit compares HEAD with HEAD^ (on a pull request, the base branch).
+          fetch-depth: 2
+      - uses: zeabur-oss/.github/actions/ci-setup@64a6547509a1911f03c4b1e62965ef9f2b4c39b6 # main
+      - run: nix develop -c scripts/ci/check.sh
+
+  test:
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: zeabur-oss/.github/actions/ci-setup@64a6547509a1911f03c4b1e62965ef9f2b4c39b6 # main
+      - run: nix develop -c scripts/ci/test.sh
+
+  storybook:
+    runs-on: ubuntu-26.04-arm
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: zeabur-oss/.github/actions/ci-setup@64a6547509a1911f03c4b1e62965ef9f2b4c39b6 # main
+      - run: nix develop -c scripts/ci/storybook.sh
+
+  zizmor:
+    uses: zeabur-oss/.github/.github/workflows/zizmor.yml@64a6547509a1911f03c4b1e62965ef9f2b4c39b6 # main
+
+  # The check rulesets require.
+  ok:
+    name: ci / ok
+    if: always()
+    needs: [check, test, storybook, zizmor]
+    runs-on: ubuntu-slim
+    steps:
+      - if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
+
   dco:
-    uses: zeabur-oss/.github/.github/workflows/dco.yml@6ab106525ce16169ab0ecfebe4b0248e096797fa # main
+    uses: zeabur-oss/.github/.github/workflows/dco.yml@64a6547509a1911f03c4b1e62965ef9f2b4c39b6 # main
