@@ -5,12 +5,6 @@
   "enabledManagers": ["bun", "github-actions", "nix"],
   "packageRules": [
     {
-      "description": "One pull request for compatible package updates; majors stay separate.",
-      "matchManagers": ["bun"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "packages (non-major)"
-    },
-    {
       "description": "A peer range is what apps must provide: widen it on purpose, not on every release.",
       "matchManagers": ["bun"],
       "matchDepTypes": ["peerDependencies"],
