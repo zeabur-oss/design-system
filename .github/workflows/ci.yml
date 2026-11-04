@@ -17,9 +17,9 @@ jobs:
   # Every job is in scripts/ci.sh (`scripts/ci.sh --list`), which runs the same on any Linux machine
   # with Nix; the shared workflow only checks out and installs Nix.
   ci:
-    uses: zeabur-oss/.github/.github/workflows/ci.yml@6ab106525ce16169ab0ecfebe4b0248e096797fa # main
+    uses: zeabur-oss/.github/.github/workflows/ci.yml@5efa62e01e1b103d1431d780658eaa74bb417438 # main
     with:
       # `fallow audit` compares HEAD with HEAD^ (on a pull request, the base branch).
       fetch-depth: 2
   dco:
-    uses: zeabur-oss/.github/.github/workflows/dco.yml@6ab106525ce16169ab0ecfebe4b0248e096797fa # main
+    uses: zeabur-oss/.github/.github/workflows/dco.yml@5efa62e01e1b103d1431d780658eaa74bb417438 # main
