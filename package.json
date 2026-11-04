@@ -36,6 +36,7 @@
     },
     "./components/*": "./src/components/*.tsx",
     "./variants/*": "./src/variants/*.ts",
+    "./theme": "./src/components/theme.ts",
     "./lint": "./lint/zeabur.js",
     "./vendor/*": "./vendor/*",
     "./package.json": "./package.json"
