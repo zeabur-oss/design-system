@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here. Versions follow [Semantic Versioning](https://semver.org/); each section comes from the change files in `.changeset/` (CONTRIBUTING.md, "Changelog and releases").
 
+## 0.1.3 (2026-11-04)
+
+### Features
+
+#### `themeStore(key)` keeps the light, dark or system choice
+
+Import it from `@zeabur-oss/design-system/theme`. It returns `followSystemTheme`, `setTheme`,
+`cycleTheme` and the `useTheme` hook, and stores the choice in `localStorage` under the key you
+pass. The `ThemeChoice` type is exported too.
+
 ## 0.1.2 (2026-11-01)
 
 ### Features
