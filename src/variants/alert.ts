@@ -10,8 +10,6 @@ export const alertVariants = cva(
         destructive:
           "border-danger/30 bg-danger/6 text-fail-strong *:data-[slot=alert-description]:text-current *:[svg]:text-danger",
         warn: "border-amber/40 bg-amber/8 text-warn-strong *:data-[slot=alert-description]:text-current *:[svg]:text-warn",
-        notice:
-          "border-amber/40 bg-amber/8 text-warn-strong *:data-[slot=alert-description]:text-current *:[svg]:text-warn",
         problem:
           "gap-y-1.5 rounded-xl border-danger/30 bg-card px-4 py-3 text-card-foreground *:data-[slot=alert-description]:text-main *:[svg]:text-danger",
       },

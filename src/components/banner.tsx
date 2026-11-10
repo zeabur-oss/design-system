@@ -9,8 +9,7 @@ const bannerVariants = cva(
       variant: {
         default: "border-primary/20 bg-primary/6 text-info-strong [&>svg]:text-brand",
         tips: "border-v2-border bg-v2-surface-hover text-main [&>svg]:text-secondary",
-        warn: "border-danger/30 bg-danger/6 text-fail-strong [&>svg]:text-danger",
-        notice: "border-amber/40 bg-amber/8 text-warn-strong [&>svg]:text-warn",
+        warn: "border-amber/40 bg-amber/8 text-warn-strong [&>svg]:text-warn",
       },
     },
     defaultVariants: {
