@@ -92,6 +92,16 @@ export const Alerts: Story = {
         <AlertTitle>Problem</AlertTitle>
         <AlertDescription>The image could not be pulled: unauthorized.</AlertDescription>
       </Alert>
+      <Alert variant="destructive" role="alert">
+        <WarningIcon aria-hidden="true" />
+        <AlertTitle>With role="alert"</AlertTitle>
+        <AlertDescription>Announced at once, for a failure that just happened.</AlertDescription>
+      </Alert>
+      <Alert variant="info" role="status">
+        <InfoIcon aria-hidden="true" />
+        <AlertTitle>With role="status"</AlertTitle>
+        <AlertDescription>Announced politely, for a state that changed.</AlertDescription>
+      </Alert>
     </div>
   ),
 }
@@ -111,10 +121,6 @@ export const Banners: Story = {
       <Banner variant="warn">
         <WarningIcon aria-hidden="true" />
         <BannerDescription>This will delete every volume.</BannerDescription>
-      </Banner>
-      <Banner variant="notice">
-        <InfoIcon aria-hidden="true" />
-        <BannerDescription>Maintenance on Sunday.</BannerDescription>
       </Banner>
     </div>
   ),
