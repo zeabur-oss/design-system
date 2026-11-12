@@ -12,10 +12,10 @@ function usePresence<T extends HTMLElement = HTMLElement>(open: boolean) {
 
   useEffect(() => {
     if (phase !== "starting" && phase !== "ending") return
-    let cancelled = false
-    let frame = requestAnimationFrame(() => {
-      frame = requestAnimationFrame(() => {
-        if (cancelled) return
+    const run = { cancelled: false, frame: 0 }
+    run.frame = requestAnimationFrame(() => {
+      run.frame = requestAnimationFrame(() => {
+        if (run.cancelled) return
         if (phase === "starting") return setPhase("open")
         // Only the exit is waited for: not a blinking cursor inside, which repeats for ever, nor a
         // scroll-driven fade, which follows the scroll rather than the clock.
@@ -25,13 +25,13 @@ function usePresence<T extends HTMLElement = HTMLElement>(open: boolean) {
             animation.effect?.getComputedTiming().iterations !== Infinity,
         )
         void Promise.allSettled(animations.map((animation) => animation.finished)).then(() => {
-          if (!cancelled) setPhase("closed")
+          if (!run.cancelled) setPhase("closed")
         })
       })
     })
     return () => {
-      cancelled = true
-      cancelAnimationFrame(frame)
+      run.cancelled = true
+      cancelAnimationFrame(run.frame)
     }
   }, [phase])
 
