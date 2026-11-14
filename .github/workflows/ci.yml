@@ -14,9 +14,11 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# A job whose runs-on can name Instabox (instabox-<size>) runs on a fresh Instabox machine when the
+# organization variable CI_INSTABOX is "true". Otherwise, jobs run on GitHub's runners.
 jobs:
   check:
-    runs-on: ubuntu-26.04-arm
+    runs-on: ${{ vars.CI_INSTABOX == 'true' && 'instabox-small' || 'ubuntu-26.04-arm' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -27,7 +29,7 @@ jobs:
       - run: nix develop -c scripts/ci/check.sh
 
   test:
-    runs-on: ubuntu-26.04-arm
+    runs-on: ${{ vars.CI_INSTABOX == 'true' && 'instabox-medium' || 'ubuntu-26.04-arm' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -36,7 +38,7 @@ jobs:
       - run: nix develop -c scripts/ci/test.sh
 
   storybook:
-    runs-on: ubuntu-26.04-arm
+    runs-on: ${{ vars.CI_INSTABOX == 'true' && 'instabox-medium' || 'ubuntu-26.04-arm' }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
