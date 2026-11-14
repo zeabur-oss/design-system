@@ -10,3 +10,5 @@ permissions:
 jobs:
   changeset:
     uses: zeabur-oss/.github/.github/workflows/changeset.yml@c43a5d36ad39f938de24e0b59109c82a20f6265a # main
+    with:
+      runner: ${{ vars.CI_RUNNER_LINT || 'ubuntu-26.04-arm' }}
