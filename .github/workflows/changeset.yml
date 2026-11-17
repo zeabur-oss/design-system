@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: changeset-caller-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   changeset:
     uses: zeabur-oss/.github/.github/workflows/changeset.yml@cb333d6e0f4250e3b2ca3625dffca106d5ea2713 # main

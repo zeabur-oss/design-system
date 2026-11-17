@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Format, lint, types, fallow, shellcheck, actionlint and nixfmt. `fallow audit --base HEAD^` needs
+# Format, lint, types, fallow, shellcheck, jactionlint and nixfmt. `fallow audit --base HEAD^` needs
 # the parent commit (fetch-depth: 2).
 set -euo pipefail
 cd "$(dirname "$0")/../.."
@@ -14,7 +14,7 @@ fi
 
 nixfmt --check flake.nix
 shellcheck scripts/ci/*.sh
-actionlint
+jactionlint
 bun ci
 bun run fmt:check
 bun run lint

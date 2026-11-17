@@ -30,7 +30,7 @@ same version. Each CI job in `.github/workflows/ci.yml` runs `scripts/ci/<job>.s
 development shell; run one the same way locally:
 
 ```sh
-nix develop -c scripts/ci/check.sh      # bun version, format, lint, types, fallow, shellcheck, actionlint, nixfmt
+nix develop -c scripts/ci/check.sh      # bun version, format, lint, types, fallow, shellcheck, jactionlint, nixfmt
 nix develop -c scripts/ci/test.sh
 nix develop -c scripts/ci/storybook.sh  # bun run build-storybook
 ```
@@ -119,7 +119,7 @@ bot tag the merge commit, and the tag publishes the package to npm (`next` for a
 ## Vendored files
 
 `vendor/` holds files copied verbatim (see the README). After changing one, run `bun run test`. When changing workflow or shell files, also run
-`actionlint` and `shellcheck scripts/*.sh`.
+`jactionlint` and `shellcheck scripts/*.sh`.
 
 ## Trademarks
 
