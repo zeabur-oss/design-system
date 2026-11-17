@@ -1,7 +1,6 @@
 # Engineering standards: the design system's part
 
-Apply `zeabur-oss-standards`' STANDARDS.md first. The design system adds these items to its
-sections.
+What the design system checks in review, by section.
 
 ## 1. Comments, doc comments and commit messages
 
