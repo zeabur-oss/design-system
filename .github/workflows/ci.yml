@@ -23,7 +23,7 @@ jobs:
           persist-credentials: false
           # fallow audit compares HEAD with HEAD^ (on a pull request, the base branch).
           fetch-depth: 2
-      - uses: zeabur-oss/.github/actions/ci-setup@3efa9e88a66e5a355574fe708fd4ed4106e87fcd # main
+      - uses: zeabur-oss/.github/actions/ci-setup@cb333d6e0f4250e3b2ca3625dffca106d5ea2713 # main
       - run: nix develop -c scripts/ci/check.sh
 
   test:
@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: zeabur-oss/.github/actions/ci-setup@3efa9e88a66e5a355574fe708fd4ed4106e87fcd # main
+      - uses: zeabur-oss/.github/actions/ci-setup@cb333d6e0f4250e3b2ca3625dffca106d5ea2713 # main
       - run: nix develop -c scripts/ci/test.sh
 
   storybook:
@@ -41,11 +41,11 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
-      - uses: zeabur-oss/.github/actions/ci-setup@3efa9e88a66e5a355574fe708fd4ed4106e87fcd # main
+      - uses: zeabur-oss/.github/actions/ci-setup@cb333d6e0f4250e3b2ca3625dffca106d5ea2713 # main
       - run: nix develop -c scripts/ci/storybook.sh
 
   zizmor:
-    uses: zeabur-oss/.github/.github/workflows/zizmor.yml@3efa9e88a66e5a355574fe708fd4ed4106e87fcd # main
+    uses: zeabur-oss/.github/.github/workflows/zizmor.yml@cb333d6e0f4250e3b2ca3625dffca106d5ea2713 # main
 
   # The check rulesets require.
   ok:
@@ -58,4 +58,4 @@ jobs:
         run: exit 1
 
   dco:
-    uses: zeabur-oss/.github/.github/workflows/dco.yml@3efa9e88a66e5a355574fe708fd4ed4106e87fcd # main
+    uses: zeabur-oss/.github/.github/workflows/dco.yml@cb333d6e0f4250e3b2ca3625dffca106d5ea2713 # main
