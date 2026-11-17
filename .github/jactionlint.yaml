@@ -1,0 +1,4 @@
+# The Instabox runners, which jactionlint does not know.
+self-hosted-runner:
+  labels:
+    - instabox-small

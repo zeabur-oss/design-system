@@ -7,9 +7,7 @@ description: Change @zeabur-oss/design-system — add or restyle a component, va
 
 Rules are in `CONTRIBUTING.md` ("Components") and the README ("Tokens and rules"); read them first.
 Comments, commit messages, tests, new props or variants, and components that render collections
-follow `zeabur-oss-standards` with [`STANDARDS.md`](STANDARDS.md) here; commits and pull requests
-follow `zeabur-oss-workflow`; packages follow `zeabur-oss-dependencies` (copied from
-zeabur-oss/.github by the Update workflow).
+follow [`STANDARDS.md`](STANDARDS.md).
 
 ## Decide where the change belongs
 
