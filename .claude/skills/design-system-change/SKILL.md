@@ -9,7 +9,7 @@ Rules are in `CONTRIBUTING.md` ("Components") and the README ("Tokens and rules"
 Comments, commit messages, tests, new props or variants, and components that render collections
 follow `zeabur-oss-standards` with [`STANDARDS.md`](STANDARDS.md) here; commits and pull requests
 follow `zeabur-oss-workflow`; packages follow `zeabur-oss-dependencies` (shared skills of
-zeabur-oss/.github).
+zeabur-oss/skills).
 
 ## Decide where the change belongs
 
