@@ -1,13 +1,11 @@
 ---
 name: design-system-change
-description: Change @zeabur-oss/design-system — add or restyle a component, variant or token, adjust lint rules — and carry the change into the apps that pin it (zeabur/web, Zeabur Identity). Use for any change in this repository or when an app needs a treatment the design system lacks.
+description: Change @zeabur-oss/design-system — add or restyle a component, variant or token, adjust lint rules — and carry the change into the apps that pin it (Zeabur, Zeabur Identity). Use for any change in this repository or when an app needs a treatment the design system lacks.
 ---
 
 # Changing the design system
 
 Rules are in `CONTRIBUTING.md` ("Components") and the README ("Tokens and rules"); read them first.
-Comments, commit messages, tests, new props or variants, and components that render collections
-follow [`STANDARDS.md`](STANDARDS.md).
 
 ## Decide where the change belongs
 
@@ -21,27 +19,29 @@ follow [`STANDARDS.md`](STANDARDS.md).
 ## Make it
 
 1. Component in `src/components/`, story in `stories/` with every variant, light and dark.
-2. `nix develop -c bash -c 'bun run fmt:check && bun run lint && bun run typecheck && bun run test && bun run build-storybook'`,
-   then `bun run fallow dead-code && bun run fallow audit --base main` (fallow at the version in
-   `package.json`, config in `.fallowrc.json`). `dead-code` finds unused files, exports and
-   dependencies, and a component that imports a story or a cover. `audit` is the CI gate: new
-   dead code, complexity and duplication in the changed files. `bun run fallow health --css`
-   reports the score, complex functions and CSS drift (hard-coded values beside tokens,
-   duplicated blocks, complex selectors); it does not fail. A false positive gets an entry in
-   `.fallowrc.json` with the reason.
-   Lint (oxlint with `@shadcn/lint` and the local `zeabur/*` rules) rejects palette classes,
-   arbitrary values, inline styles and restricted imports. A disable comment needs `-- reason`
+2. Run the CI jobs (`CONTRIBUTING.md`): `scripts/ci/check.sh`, `test.sh`, `storybook.sh`. On a
+   branch, `bun run fallow audit --base main` shows what the change adds. A fallow false positive
+   gets an entry in `.fallowrc.json` with the reason; a lint disable comment needs `-- reason`
    and should be rare; prefer fixing the rule or adding the token.
 3. Look at it in Storybook in both themes, focus rings included. Check contrast of new edges and
    text against their surface.
-4. Names are an interface (`src/compat.test.ts`): add, do not rename.
+4. Names are an interface (`src/compat.test.ts`): add, do not rename. Removing one is a
+   deprecation, not a cleanup.
+5. Tests: keep a browser test only for what a function test cannot see (rendering, focus,
+   keyboard use).
+
+## Collections and data
+
+- A component that renders a collection works with a page or a virtualized window of rows, not
+  every row in the DOM. Short fixed lists (a menu, a set of tabs) are fine.
+- A component never fetches or starts a polling timer; the app owns data and its refresh.
 
 ## Try it in the apps before opening a pull request
 
-- **zeabur/web**: pack this repository's committed state and install the tarball:
+- **Zeabur** (`web/` in zeabur-oss/zeabur): pack this repository's committed state and install the tarball:
   ```sh
   git archive HEAD | tar -x -C "$tmp" && (cd "$tmp" && bun pm pack --destination "$out")
-  # in zeabur/web: point @zeabur-oss/design-system at the tarball, then
+  # in web/: point @zeabur-oss/design-system at the tarball, then
   bun install
   ```
   Bun caches tarballs by name and version, so a repack with the same version is served stale:
@@ -51,4 +51,4 @@ follow [`STANDARDS.md`](STANDARDS.md).
 - **Identity** depends on the package in `ui/package.json`, as web does. Its build generates the
   askama class macros from `src/variants/` (`ui/scripts/gen-classes.ts`): point it at the tarball,
   run `./scripts/build-ui.sh` and its UI checks, and commit the regenerated files there.
-- After merging, each app moves its pin: `bun add 'github:zeabur-oss/design-system#<commit>'`.
+- After a release, each app moves its pin to the new npm version.
