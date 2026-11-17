@@ -26,7 +26,5 @@ jobs:
       name: Zeabur Design System
       version: ${{ inputs.version }}
       prerelease: ${{ inputs.prerelease }}
-      # package.json is the only manifest; knope sets it.
-      check: false
     secrets:
       private-key: ${{ secrets.ZEABUR_OSS_BOT_PRIVATE_KEY }}
