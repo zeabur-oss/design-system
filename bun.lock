@@ -19,7 +19,7 @@
         "@types/react": "19.3.0",
         "@types/react-dom": "19.3.0",
         "@vitejs/plugin-react": "6.2.1",
-        "@zeabur-oss/release": "github:zeabur-oss/.github#3e2e5ba4210b60c1e97fa53e2029e1ea9f5e468e",
+        "@zeabur-oss/release": "github:zeabur-oss/.github#01d7c04f44028272077eaf4ab97f4de5257aad65",
         "class-variance-authority": "0.7.1",
         "cn": "0.5.2",
         "oxfmt": "0.77.0",
@@ -585,7 +585,7 @@
 
     "@webcontainer/env": ["@webcontainer/env@1.1.1", "", {}, "sha512-6aN99yL695Hi9SuIk1oC88l9o0gmxL1nGWWQ/kNy81HigJ0FoaoTXpytCj6ItzgyCEwA9kF1wixsTuv5cjsgng=="],
 
-    "@zeabur-oss/release": ["@zeabur-oss/release@github:zeabur-oss/.github#3e2e5ba", { "bin": { "zeabur-oss-release": "./release/cli.ts", "zeabur-oss-unsafe-report": "./checks/unsafe-report.ts" } }, "zeabur-oss-.github-3e2e5ba", "sha512-8V2KTyThMaV2rWcjqdBZDArnDpdve0vYHyfnqfW6j9bR2+cp2SsDQ3VnxyIlQ85cVsIaJoyHiBNBNbHyjUC7ZQ=="],
+    "@zeabur-oss/release": ["@zeabur-oss/release@github:zeabur-oss/.github#01d7c04", { "bin": { "zeabur-oss-release": "./release/cli.ts", "zeabur-oss-unsafe-report": "./checks/unsafe-report.ts" } }, "zeabur-oss-.github-01d7c04", "sha512-1k2+ly1gk4C/Kvx5SSBuLZRARhOFNW+c7+gD95UfHCoteiDhHkgNmijsRNd6ZvAJSQu3CqboZhayrJ5/WtPb9g=="],
 
     "acorn": ["acorn@8.19.0", "", { "bin": { "acorn": "bin/acorn" } }, "sha512-oJlA3XiRm7Cyk6qFD2Jn8ak9B7jSy0qy00ADO3+8dpT0LSjFihQYv4C02LFCSYJV3Q37xYwwRy5m+IpIiUzqWw=="],
 
