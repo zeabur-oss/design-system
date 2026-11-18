@@ -105,6 +105,16 @@ body {
   border: 2px solid var(--cover-on-slab);
   white-space: nowrap;
 }
+.slab .ui:has(> .icon) {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.slab .ui .icon {
+  width: 30px;
+  height: 30px;
+  flex: none;
+}
 .slab .ui.primary {
   background: var(--cover-on-slab);
   color: rgb(var(--black));

@@ -26,10 +26,10 @@ export default {
     const [passkey, provider, password] = ui[lang]
     const via = (name: string) => quote(provider.replace("%provider%", name), provider)
     return column(
-      control("primary", quote(passkey)),
-      control("outline", via("GitHub")),
-      control("outline", via("Google")),
-      control("field", quote(password)),
+      control("primary", quote(passkey), "fingerprint"),
+      control("outline", via("GitHub"), "github-logo"),
+      control("outline", via("Google"), "google-logo"),
+      control("field", quote(password), "password"),
     )
   },
   sources: ["identity/crates/zeabur-identity-ui/src/i18n.rs"],

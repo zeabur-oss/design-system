@@ -7,9 +7,12 @@ const esc = (text: string) =>
 export const quote = (text: string, template = text) =>
   `<span data-quote="${esc(template)}">${text}</span>`
 
-/** A control of the product's own UI. Its label must contain a `quote`; render.ts checks. */
-export const control = (kind: "primary" | "outline" | "field", label: string) =>
-  `<span class="ui ${kind}">${label}</span>`
+/**
+ * A control of the product's own UI. Its label must contain a `quote`; render.ts checks.
+ * `icon` names a Phosphor icon that tells the reader what the control is, such as a provider's logo.
+ */
+export const control = (kind: "primary" | "outline" | "field", label: string, icon = "") =>
+  `<span class="ui ${kind}">${icon ? `<phosphor-icon name="${icon}"></phosphor-icon>` : ""}${label}</span>`
 
 /** A thing that is not a control, such as a server or a file. */
 export const thing = (label: string, mono = false) =>

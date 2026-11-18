@@ -68,6 +68,18 @@ async function inlineLogos(html: string): Promise<string> {
   return html
 }
 
+// Phosphor, the icon set of the design system, in its bold weight.
+const phosphor: Record<string, { body: string }> = JSON.parse(
+  await readFile(join(ds, "node_modules/@iconify-json/ph/icons.json"), "utf8"),
+).icons
+function inlineIcons(html: string): string {
+  return html.replace(/<phosphor-icon name="([\w-]+)"><\/phosphor-icon>/g, (_, name: string) => {
+    const icon = phosphor[`${name}-bold`]
+    if (!icon) throw new Error(`${name}: not a Phosphor icon`)
+    return `<svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">${icon.body}</svg>`
+  })
+}
+
 const avoid: [RegExp, string][] = [
   [
     /<(\w+)[^>]*>\s*<\/\1>\s*<\1[^>]*>\s*<\/\1>\s*<\1[^>]*>\s*<\/\1>/,
@@ -144,7 +156,7 @@ async function page(lang: Lang, theme: "light" | "dark"): Promise<string> {
 <body>
 <div class="lockup">${wordmark}</div>
 <h1 class="headline">${headline(lang)}</h1>
-<div class="slab">${await inlineLogos(cover.slab(lang))}</div>
+<div class="slab">${inlineIcons(await inlineLogos(cover.slab(lang)))}</div>
 <div class="rule"></div>
 <div class="name">${cover.product ?? "Zeabur"}</div>
 </body>

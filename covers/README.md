@@ -40,7 +40,9 @@ Covers: `zeabur`, `zeatend`, `catalog`, `builder`, `identity`, `design-system`.
   sign-in buttons. No sentence on the slab.
 - **Controls.** A control (`control()`) shows a label of the product's UI, quoted from its
   catalogue with `quote()`; render.ts refuses a control without one. Something that is not a
-  control, such as "Linux server", is a `thing()`.
+  control, such as "Linux server", is a `thing()`. A control may carry a Phosphor icon that says what it
+  is, such as a provider's logo on a sign-in button: `control("outline", label, "github-logo")`.
+  Icons go only on controls.
 - **Logos.** Only of software the product runs or builds, from `vendor/simple-icons`, unchanged
   and in the owner's colour, on white. Read the owner's trademark policy first:
   `vendor/simple-icons/NOTICE`. Where only the name is allowed, show the name as text (`word()`).

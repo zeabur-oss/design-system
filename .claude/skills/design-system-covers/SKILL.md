@@ -20,8 +20,8 @@ description: Make or revise a README cover / social preview for a Zeabur open-so
 4. **Render** inside `nix develop` (`bun render.ts <name> --out <repo>/docs/images`) and look at
    every language and theme at full size and at 830 px, plus `social-preview.png`.
 5. **Refuse the generic look.** render.ts rejects window chrome, three dots, mock UI kits, "…"
-   and icons on the slab. Beyond the checks: no glow, no gradient, no invented terminal session,
-   no stock dashboard. Zeabur's own character is the large name, the violet slab, Geist, and the
-   product's real text.
+   and decorative icons; an icon goes only on a control, through `control()`. Beyond the checks:
+   no glow, no gradient, no invented terminal session, no stock dashboard. Zeabur's own character
+   is the large name, the violet slab, Geist, and the product's real text.
 6. Commit the AVIFs in the product repository; the social preview is uploaded in the
    repository's GitHub settings by a maintainer.
