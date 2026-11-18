@@ -166,7 +166,7 @@ plugins: [
   }),
   tailwindcss(),
   // `~icons/ph/<name>`: Phosphor icons, as the components import them.
-  Icons({ scale: 1, compiler: "jsx", jsx: "react" }),
+  Icons(icons),
 ],
 // The pre-bundler runs no plugins, so it could not resolve `~icons/…`. What the design system
 // imports is not pre-bundled either then, and Base UI reaches CommonJS: list it in `include`.
@@ -177,7 +177,10 @@ optimizeDeps: {
 ```
 
 with `"types": ["unplugin-icons/types/react"]` in its `tsconfig`, and `unplugin-icons`,
-`@iconify-json/ph`, `@svgr/core` and `@svgr/plugin-jsx` among its dev dependencies.
+`@iconify-json/ph`, `@svgr/core` and `@svgr/plugin-jsx` among its dev dependencies. `icons` is
+the options in [`scripts/icons.ts`](scripts/icons.ts): copy the file into the app. It calls svgr
+itself, because unplugin-icons' own `"jsx"` compiler loads `@svgr/core` by name from its own
+location, where Bun's isolated linker does not let it see the app's packages.
 
 Import the styles right after Tailwind in the app's stylesheet (they also tell Tailwind to read the
 components' classes):

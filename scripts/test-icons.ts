@@ -5,9 +5,11 @@ import { resolve } from "node:path"
 
 import Icons from "unplugin-icons"
 
-const icons = Icons.raw({ scale: 1, compiler: "jsx", jsx: "react" }, { framework: "bun" })
-const resolveId = icons.resolveId as (id: string) => string
-const load = icons.load as (
+import { icons } from "./icons.ts"
+
+const plugin = Icons.raw(icons, { framework: "bun" })
+const resolveId = plugin.resolveId as (id: string) => string
+const load = plugin.load as (
   this: { addWatchFile(path: string): void },
   id: string,
 ) => Promise<{ code: string }>
