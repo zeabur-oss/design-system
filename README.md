@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/cover-dark.avif">
-  <img alt="Zeabur Design System: build pages that look like Zeabur, light and dark; a status colour defined once for both themes and used by name in a component" src="docs/images/cover-light.avif">
+  <img alt="Zeabur Design System: build screens that look like Zeabur, right in light and dark. Four tokens with their light and dark colours." src="docs/images/cover-light.avif">
 </picture>
 
 # Zeabur design system
