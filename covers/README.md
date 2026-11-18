@@ -29,7 +29,10 @@ Covers: `zeabur`, `zeatend`, `catalog`, `builder`, `identity`, `design-system`.
   rule across at 346 px, and the product's name under the rule, cut by the bottom edge. The name
   is what tells covers apart at thumbnail size.
 - **Lockup.** The wordmark, `vendor/zeabur/logo-with-text.svg`, 24 px high, never redrawn.
-- **Name.** Geist 900 at 340 px, tight. render.ts shrinks a name wider than the cover.
+- **Name.** One short word in Geist 900, sized to fill the width, its capitals just under the
+  rule. Spacing (`template/kern.ts`): Geist's own kerning, tracked to -0.045em, and a few pairs
+  opened or closed by eye. Long straight edges keep a little clearance; Geist is not drawn to
+  interlock. A name of two words sets too small to fill the bottom: pick one word.
 - **Headline.** What the product does for the reader, in everyday words: no CI, no YAML, no
   kubeconfig. Geist 800, 54/58; Chinese in Noto Sans CJK 900, 50/66, with `|` where a line may
   break. It must end above the rule; render.ts warns.

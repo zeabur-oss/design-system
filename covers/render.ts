@@ -6,6 +6,7 @@ import { fileURLToPath, pathToFileURL } from "node:url"
 import { parseArgs } from "node:util"
 import { chromium } from "playwright-core"
 import sharp from "sharp"
+import { kernName } from "./template/kern.ts"
 
 export const langs = ["en", "zh-TW", "zh-CN"] as const
 export type Lang = (typeof langs)[number]
@@ -209,15 +210,20 @@ try {
             console.error(`${name} ${lang}: controls with no quoted label: ${list(unquoted)}`)
           process.exit(1)
         }
-        // The name fills the width it is given and no more: shrink a long one to fit.
+        await tab.$eval(".name", kernName)
+        // The name fills the width, grown or shrunk, with its capitals just under the rule.
         await tab.evaluate(() => {
           const el = document.querySelector<HTMLElement>(".name")!
-          const max = 1280 - 2 * 44
-          const size = parseFloat(getComputedStyle(el).fontSize)
-          if (el.offsetWidth <= max) return
-          el.style.fontSize = `${(size * max) / el.offsetWidth}px`
-          // Keep it on the bottom edge, cut as much as a name at full size.
-          el.style.top = `${640 - (el.offsetHeight * 310) / 340}px`
+          const style = getComputedStyle(el)
+          const size = (parseFloat(style.fontSize) * (1280 - 2 * 44)) / el.offsetWidth
+          el.style.fontSize = `${size}px`
+          const ctx = document.createElement("canvas").getContext("2d")!
+          ctx.font = `${style.fontWeight} ${size}px ${style.fontFamily}`
+          const m = ctx.measureText("H")
+          const ascent =
+            (size - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 +
+            m.fontBoundingBoxAscent
+          el.style.top = `${378 - ascent + m.actualBoundingBoxAscent}px`
         })
         const overflow: string[] = await tab.evaluate(() => {
           const rule = document.querySelector(".rule")!.getBoundingClientRect().top

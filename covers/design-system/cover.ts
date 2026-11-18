@@ -8,7 +8,7 @@ const heads: Record<Lang, [string, string]> = {
 }
 
 export default {
-  product: "Design System",
+  product: "Tokens",
   headline: {
     en: "Build screens that look like Zeabur, right in light and dark.",
     "zh-TW": "做出和 Zeabur|一樣的畫面，|亮色暗色都對。",

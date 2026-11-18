@@ -237,7 +237,7 @@ body {
   background: var(--cover-ink);
 }
 
-/* The product's name, cut by the bottom edge. render.ts shrinks a name wider than the cover. */
+/* The product's name, cut by the bottom edge. render.ts spaces its letters (template/kern.ts) and sizes it to the width. */
 .name {
   position: absolute;
   left: 40px;
@@ -245,6 +245,5 @@ body {
   font-size: 340px;
   line-height: 1;
   font-weight: 900;
-  letter-spacing: -0.065em;
   white-space: nowrap;
 }
