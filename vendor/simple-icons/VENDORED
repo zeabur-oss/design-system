@@ -1,0 +1,8 @@
+# Logos of software that Zeabur products run or build, for the covers (covers/README.md). Copied
+# verbatim from the npm package simple-icons@16.36.0 (CC0 1.0, LICENSE.md). colors.json holds the
+# title, hex, license and guidelines fields of each icon from data/simple-icons.json. Change them
+# only by copying a newer release's files whole. NOTICE says who owns each mark.
+package = simple-icons@16.36.0
+<slug>.svg = icons/<slug>.svg
+colors.json = data/simple-icons.json (fields title, hex, license, guidelines)
+LICENSE.md = LICENSE.md

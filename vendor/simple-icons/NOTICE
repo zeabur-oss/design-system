@@ -1,0 +1,20 @@
+The SVG files are CC0 1.0 (LICENSE.md), but each logo is a trademark of its owner. None of them is
+licensed under the Apache License 2.0 that covers the rest of this repository, and none of the
+owners endorses Zeabur. The covers show a logo only to say that a Zeabur product runs or builds
+that software, in the owner's colour and unchanged.
+
+Before you add a logo, read the owner's brand or trademark policy. Leave it out if the policy asks
+for permission for this use or forbids it next to other logos. That is why Dify, Node.js, Go and
+PostgreSQL are not here. Where the owner allows its name, a cover may show the name as plain text
+instead (`word()` in covers/template/slab.ts): the Builder cover names Node.js and Go.
+
+Logos that need more than this notice:
+
+python.svg  "Python" and the Python logos are trademarks or registered trademarks of the Python
+            Software Foundation. The covers mark the logo with ™
+            (https://www.python.org/psf/trademarks/).
+php.svg     The PHP logo, by Colin Viebrock, CC BY-SA 4.0 (https://www.php.net/download-logos.php).
+ruby.svg    The Ruby logo, Yukihiro Matsumoto, CC BY-SA 2.5 (https://www.ruby-lang.org/en/about/logo/).
+wordpress.svg  WordPress is a trademark of the WordPress Foundation; shown under its trademark
+            policy (https://wordpressfoundation.org/trademark-policy/).
+ghost.svg   Ghost is a trademark of the Ghost Foundation (https://ghost.org/docs/logos/).

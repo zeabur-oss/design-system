@@ -1,0 +1,66 @@
+{
+  "wordpress": {
+    "title": "WordPress",
+    "hex": "21759B",
+    "guidelines": "https://wordpressfoundation.org/trademark-policy"
+  },
+  "n8n": {
+    "title": "n8n",
+    "hex": "EA4B71"
+  },
+  "ghost": {
+    "title": "Ghost",
+    "hex": "15171A",
+    "guidelines": "https://ghost.org/docs/logos/"
+  },
+  "uptimekuma": {
+    "title": "Uptime Kuma",
+    "hex": "5CDD8B"
+  },
+  "vaultwarden": {
+    "title": "Vaultwarden",
+    "hex": "000000"
+  },
+  "umami": {
+    "title": "Umami",
+    "hex": "000000",
+    "license": {
+      "type": "MIT"
+    }
+  },
+  "gitea": {
+    "title": "Gitea",
+    "hex": "609926"
+  },
+  "ollama": {
+    "title": "Ollama",
+    "hex": "000000"
+  },
+  "searxng": {
+    "title": "SearXNG",
+    "hex": "3050FF"
+  },
+  "ntfy": {
+    "title": "ntfy",
+    "hex": "317F6F"
+  },
+  "python": {
+    "title": "Python",
+    "hex": "3776AB",
+    "guidelines": "https://www.python.org/community/logos/"
+  },
+  "php": {
+    "title": "PHP",
+    "hex": "777BB4",
+    "license": {
+      "type": "CC-BY-SA-4.0"
+    }
+  },
+  "ruby": {
+    "title": "Ruby",
+    "hex": "CC342D",
+    "license": {
+      "type": "CC-BY-SA-2.5"
+    }
+  }
+}
