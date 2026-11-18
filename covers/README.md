@@ -13,7 +13,7 @@ A cover is a directory with:
 | `illustration.css`  | Optional; styles only this cover needs                                    |
 
 ```sh
-nix develop -c bash -c 'cd covers && bun install && bun render.ts identity --out ../../identity/docs/images'
+nix develop -c bash -c 'bun install && cd covers && bun render.ts identity --out ../../identity/docs/images'
 ```
 
 `--out` gets `cover-light.avif` and `cover-dark.avif`. `--previews` (default `.build/<cover>/`) gets
