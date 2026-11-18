@@ -31,14 +31,17 @@ export function kernName(el: HTMLElement): void {
   // Each letter is a span of its own, which drops the font's kerning: add it back.
   const geist = (pair: string) => (width(pair) - width(pair[0]) - width(pair[1])) / size
   const text = el.textContent ?? ""
-  el.innerHTML = [...text]
-    .map((ch, i) => {
+  el.replaceChildren(
+    ...[...text].map((ch, i) => {
       const pair = text.slice(i, i + 2)
       const k =
         pair.length === 2 && pair.trim().length === 2
           ? geist(pair) + tracking + (pairs[pair] ?? 0)
           : 0
-      return `<span style="margin-right: ${k.toFixed(4)}em">${ch}</span>`
-    })
-    .join("")
+      const span = document.createElement("span")
+      span.textContent = ch
+      span.style.marginRight = `${k.toFixed(4)}em`
+      return span
+    }),
+  )
 }
