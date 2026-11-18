@@ -26,6 +26,9 @@ export const arrow = (direction: "right" | "down", note = "") =>
 export const logo = (slug: string, tm = false) =>
   `<span class="logo"><simple-icon name="${slug}"></simple-icon>${tm ? `<span class="tm">™</span>` : ""}</span>`
 
+/** A product's name as plain text, where its owner does not allow the logo. */
+export const word = (name: string) => `<span class="logo word">${name}</span>`
+
 export const row = (...parts: string[]) => `<div class="row">${parts.join("")}</div>`
 export const column = (...parts: string[]) => `<div class="column">${parts.join("")}</div>`
 export const grid = (columns: number, ...parts: string[]) =>

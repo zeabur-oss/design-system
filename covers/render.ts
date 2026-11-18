@@ -210,11 +210,19 @@ try {
         const overflow: string[] = await tab.evaluate(() => {
           const rule = document.querySelector(".rule")!.getBoundingClientRect().top
           const headline = document.querySelector(".headline")!.getBoundingClientRect().bottom
-          const slab = document.querySelector(".slab")!
-          return [
-            ...(headline > rule - 16 ? ["the headline reaches the rule"] : []),
-            ...(slab.scrollHeight > slab.clientHeight ? ["the slab is too full"] : []),
+          const box = document.querySelector(".slab")!
+          const slab = box.getBoundingClientRect()
+          const right = Math.max(
+            ...[...document.querySelectorAll(".slab *")].map(
+              (el) => el.getBoundingClientRect().right,
+            ),
+          )
+          const checks: [boolean, string][] = [
+            [headline > rule - 16, "the headline reaches the rule"],
+            [right > slab.right - 48 + 0.5, "the slab runs into its right margin"],
+            [box.scrollHeight > box.clientHeight, "the slab is too full"],
           ]
+          return checks.filter(([hit]) => hit).map(([, why]) => why)
         })
         if (overflow.length) console.warn(`${name} ${lang} ${theme}: ${overflow.join(", ")}`)
         const png = await tab.screenshot({ type: "png" })

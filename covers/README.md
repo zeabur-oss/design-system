@@ -43,7 +43,7 @@ Covers: `zeabur`, `zeatend`, `catalog`, `builder`, `identity`, `design-system`.
   control, such as "Linux server", is a `thing()`.
 - **Logos.** Only of software the product runs or builds, from `vendor/simple-icons`, unchanged
   and in the owner's colour, on white. Read the owner's trademark policy first:
-  `vendor/simple-icons/NOTICE`.
+  `vendor/simple-icons/NOTICE`. Where only the name is allowed, show the name as text (`word()`).
 - **Quotes.** `quote()` marks text as the product's and its file goes in `sources`. The render
   fails if the text is not in them. For a string with a placeholder, quote the template:
   `quote("Continue with GitHub", "Continue with %provider%")`.

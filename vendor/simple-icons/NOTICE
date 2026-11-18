@@ -5,7 +5,8 @@ that software, in the owner's colour and unchanged.
 
 Before you add a logo, read the owner's brand or trademark policy. Leave it out if the policy asks
 for permission for this use or forbids it next to other logos. That is why Dify, Node.js, Go and
-PostgreSQL are not here.
+PostgreSQL are not here. Where the owner allows its name, a cover may show the name as plain text
+instead (`word()` in covers/template/slab.ts): the Builder cover names Node.js and Go.
 
 Logos that need more than this notice:
 
