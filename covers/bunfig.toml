@@ -1,3 +1,0 @@
-[install]
-# Each package sees only the packages it declares.
-linker = "isolated"

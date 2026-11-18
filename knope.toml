@@ -1,6 +1,6 @@
 # Change files in .changeset/ and release pull requests (CONTRIBUTING.md, "Changelog and releases").
 [package]
-versioned_files = ["package.json"]
+versioned_files = ["package.json", "covers/package.json"]
 changelog = "CHANGELOG.md"
 
 [changes]
@@ -15,7 +15,7 @@ type = "PrepareRelease"
 # knope writes package.json through its JSON serializer, which drops the final newline.
 [[workflows.steps]]
 type = "Command"
-command = "bun run fmt package.json"
+command = "bun run fmt package.json covers/package.json"
 
 [[workflows]]
 name = "document-change"
