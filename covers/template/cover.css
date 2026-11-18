@@ -1,18 +1,13 @@
 :root {
   --cover-w: 1280px;
   --cover-h: 640px;
-  --frame: 48px;
-  --column: 640px;
-  --pad: 48px;
-  --headline: 52px;
-  --headline-lh: 56px;
-  --tagline: 20px;
-  --tagline-lh: 30px;
-  --specimen: 13px;
-  --specimen-lh: 24px;
-  --gutter: 140px;
-  --cover-rule: var(--border-main);
-  --cover-hatch: var(--v2-separator);
+  --cover-ink: var(--text-main);
+  --cover-paper: light-dark(rgb(var(--white)), rgb(var(--zGray-950)));
+  --cover-slab: var(--logo-violet);
+  --cover-on-slab: rgb(var(--white));
+  --cover-rule-top: 346px;
+  --cover-sans: "Geist", "Cover CJK", sans-serif;
+  --cover-mono: "Geist Mono", "Cover CJK", monospace;
 }
 
 * {
@@ -29,221 +24,206 @@ body {
 
 body {
   position: relative;
-  background: var(--surface-page);
-  color: var(--text-main);
-  font-family: var(--font-stack-sans);
+  background: var(--cover-paper);
+  color: var(--cover-ink);
+  font-family: var(--cover-sans);
   -webkit-font-smoothing: antialiased;
   font-variant-numeric: tabular-nums;
 }
 
-.gutter {
+.lockup {
   position: absolute;
-  background: repeating-linear-gradient(45deg, transparent 0 9px, var(--cover-hatch) 9px 10px);
+  left: 64px;
+  top: 56px;
+  line-height: 0;
 }
-.gutter.top {
-  inset: 0 0 auto 0;
-  height: var(--frame);
+.lockup .wordmark {
+  height: 24px;
+  width: auto;
 }
-.gutter.bottom {
-  inset: auto 0 0 0;
-  height: var(--frame);
+
+.headline {
+  position: absolute;
+  left: 64px;
+  top: 112px;
+  width: 570px;
+  font-size: 54px;
+  line-height: 58px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
 }
-.gutter.left {
-  inset: var(--frame) auto var(--frame) 0;
-  width: var(--frame);
+:lang(zh) .headline {
+  width: 530px;
+  font-size: 50px;
+  line-height: 66px;
+  font-weight: 900;
+  letter-spacing: 0;
+  word-break: keep-all;
 }
-.gutter.right {
-  inset: var(--frame) 0 var(--frame) auto;
-  width: var(--frame);
+
+/* The slab: what the reader does and what they get, in the product's own controls. */
+.slab {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 600px;
+  height: var(--cover-rule-top);
+  padding: 0 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--cover-slab);
+  color: var(--cover-on-slab);
+}
+.slab .row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.slab .column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.slab .column:has(> .arrow) {
+  gap: 4px;
+}
+.slab .grid {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  gap: 14px;
+}
+
+.slab .ui,
+.slab .thing {
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 600;
+  padding: 11px 20px;
+  border: 2px solid var(--cover-on-slab);
+  white-space: nowrap;
+}
+.slab .ui.primary {
+  background: var(--cover-on-slab);
+  color: rgb(var(--black));
+}
+.slab .ui.field {
+  min-width: 360px;
+  font-weight: 500;
+}
+.slab .mono {
+  font-family: var(--cover-mono);
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.slab .status {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 600;
+  padding: 11px 0;
+  white-space: nowrap;
+}
+.slab .status svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--success);
+}
+
+.slab .arrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-left: 18px;
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+}
+.slab .row > .arrow {
+  padding-left: 0;
+}
+.slab .arrow .note {
+  font-family: var(--cover-mono);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+/* A logo sits on white so that its owner's colour stays as the owner gives it. */
+.slab .logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  background: var(--cover-on-slab);
+}
+.slab .logo svg {
+  width: 48px;
+  height: 48px;
+}
+.slab .row .logo {
+  width: 64px;
+  height: 64px;
+}
+.slab .row .logo svg {
+  width: 38px;
+  height: 38px;
+}
+.slab .row > .thing {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 22px;
+}
+.slab .logo .tm {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-size: 12px;
+  line-height: 1;
+  color: rgb(var(--black));
+}
+
+.slab .swatches {
+  display: grid;
+  grid-template-columns: 1fr 88px 88px;
+  align-items: center;
+  gap: 12px 16px;
+  font-size: 22px;
+  font-weight: 500;
+}
+.slab .swatches [data-quote] {
+  font-family: var(--cover-mono);
+  font-size: 24px;
+}
+.slab .swatch {
+  height: 48px;
+  border: 2px solid var(--cover-on-slab);
 }
 
 .rule {
   position: absolute;
-  background: var(--cover-rule);
-}
-.rule.h {
   left: 0;
   right: 0;
-  height: 1px;
-}
-.rule.v {
-  top: 0;
-  bottom: 0;
-  width: 1px;
+  top: var(--cover-rule-top);
+  height: 8px;
+  background: var(--cover-ink);
 }
 
-.cross {
+/* The product's name, cut by the bottom edge. render.ts shrinks a name wider than the cover. */
+.name {
   position: absolute;
-  width: 13px;
-  height: 13px;
-  translate: -6px -6px;
-}
-.cross::before,
-.cross::after {
-  content: "";
-  position: absolute;
-  background: var(--text-tertiary);
-}
-.cross::before {
-  left: 6px;
-  top: 0;
-  width: 1px;
-  height: 13px;
-}
-.cross::after {
-  top: 6px;
-  left: 0;
-  height: 1px;
-  width: 13px;
-}
-
-.column {
-  position: absolute;
-  left: var(--frame);
-  top: var(--frame);
-  bottom: var(--frame);
-  width: var(--column);
-  padding: var(--pad);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.lockup {
-  --wordmark-h: 24px;
-  font-size: calc(var(--wordmark-h) * 96.72 / 107 / 0.7);
-  font-size-adjust: cap-height 0.7;
-  line-height: var(--wordmark-h);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  left: 40px;
+  top: 330px;
+  font-size: 340px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.065em;
   white-space: nowrap;
-}
-/* The wordmark's letters stand on y = 96.72 of 107; its b rises to y = 0. */
-.lockup .wordmark {
-  height: var(--wordmark-h);
-  width: auto;
-  vertical-align: calc(var(--wordmark-h) * -10.28 / 107);
-}
-.lockup span {
-  margin-left: 0.3em;
-}
-
-.message {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.headline {
-  font-size: var(--headline);
-  line-height: var(--headline-lh);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  text-wrap: balance;
-}
-.headline s {
-  display: block;
-  width: fit-content;
-  color: var(--text-tertiary);
-  text-decoration: line-through;
-  text-decoration-color: var(--danger);
-  text-decoration-thickness: 5px;
-}
-.headline code,
-.tagline code {
-  font-family: var(--font-stack-mono);
-  font-size: 0.92em;
-  letter-spacing: -0.02em;
-}
-
-.tagline {
-  max-width: 520px;
-  font-size: var(--tagline);
-  line-height: var(--tagline-lh);
-  color: var(--text-secondary);
-  text-wrap: pretty;
-}
-
-.cell {
-  position: absolute;
-  left: calc(var(--frame) + var(--column));
-  top: var(--frame);
-  right: var(--frame);
-  bottom: var(--frame);
-  overflow: hidden;
-  background: var(--surface);
-}
-.ill {
-  position: absolute;
-  inset: 0;
-  padding: 40px 0 0 24px;
-}
-
-.specimen {
-  display: grid;
-  grid-template-columns: var(--gutter) max-content;
-  font-family: var(--font-stack-mono);
-  font-size: var(--specimen);
-  line-height: var(--specimen-lh);
-  white-space: nowrap;
-}
-.specimen + .specimen {
-  margin-top: 24px;
-}
-
-.specimen .file {
-  grid-column: 1 / -1;
-  margin-bottom: 4px;
-  font-family: var(--font-stack-sans);
-  font-size: 13px;
-  line-height: 20px;
-  color: var(--text-tertiary);
-}
-
-.specimen .note {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-right: 8px;
-  font-family: var(--font-stack-sans);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--violet-accent);
-}
-.specimen .note:not(:empty)::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.5;
-}
-.specimen .note.removed {
-  color: var(--danger);
-}
-
-.specimen .l {
-  padding-left: calc(12px + var(--i, 0) * 1ch);
-  color: var(--text-main);
-}
-.specimen .l.add {
-  box-shadow: inset 3px 0 var(--logo-violet);
-}
-.specimen .l.del {
-  color: var(--text-tertiary);
-  text-decoration: line-through;
-  text-decoration-color: var(--danger);
-  text-decoration-thickness: 2px;
-  box-shadow: inset 3px 0 var(--mark-orangered);
-}
-.specimen .c {
-  color: var(--text-tertiary);
-}
-.specimen .k {
-  color: var(--text-secondary);
-}
-.specimen .ok {
-  color: var(--ok-strong);
-}
-.specimen .fail {
-  color: var(--fail-strong);
 }

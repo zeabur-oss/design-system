@@ -5,19 +5,23 @@ description: Make or revise a README cover / social preview for a Zeabur open-so
 
 # Covers
 
-`covers/README.md` has the canvas, frame, lockup and rules; read it first.
+`covers/README.md` has the canvas, layout, lockup and rules; read it first.
 
-1. **Pick one true moment of the product** a user meets: a real file it reads or writes, a
-   real command and its real output, a real page state. Annotate it; do not decorate it.
-   Every quoted line (`data-quote`) must exist in the source files named in `cover.ts`
-   (`sources`); render.ts checks this, so a wording change in the product can fail a cover.
-2. **Copy** follows the product's wording guide: a headline that states what it does for the
-   reader, a tagline with the mechanism, alt text that describes the plate's content.
-3. **Render** inside `nix develop` (`bun render.ts <name> --out <repo>/docs/images`) and look at
-   both themes at full size and at 830 px, plus `social-preview.png`.
-4. **Refuse the generic look.** render.ts rejects window chrome, three dots, floating cards,
-   shadows, gradients, "…" and icons on the plate. Beyond the checks: no dot-grid + glow, no
-   invented terminal session, no stock "dashboard" mock. Zeabur's own character is the frame of
-   hairlines and crosses, hatched gutters, Geist, and the product's real text.
-5. Commit the AVIFs in the product repository; the social preview is uploaded in the
+1. **Draw one flow on the slab**: what the reader has, to what they get, in the product's own
+   controls and states (Zeabur's ways to deploy ending in "Running", Identity's sign-in buttons).
+   Every control's label is a `quote()` of the product's catalogue, and every quote must exist
+   in the files named in `sources`; render.ts checks both, so a wording change in the product can
+   fail a cover.
+2. **Copy** follows the `zeabur-writing` skill: a headline that says what the product does for
+   the reader in everyday words, in English, zh-TW and zh-CN, and alt text that states it and
+   what the slab shows.
+3. **Logos** only of software the product runs or builds, and only after reading the owner's
+   trademark policy; record it in `vendor/simple-icons/NOTICE`.
+4. **Render** inside `nix develop` (`bun render.ts <name> --out <repo>/docs/images`) and look at
+   every language and theme at full size and at 830 px, plus `social-preview.png`.
+5. **Refuse the generic look.** render.ts rejects window chrome, three dots, mock UI kits, "…"
+   and icons on the slab. Beyond the checks: no glow, no gradient, no invented terminal session,
+   no stock dashboard. Zeabur's own character is the large name, the violet slab, Geist, and the
+   product's real text.
+6. Commit the AVIFs in the product repository; the social preview is uploaded in the
    repository's GitHub settings by a maintainer.

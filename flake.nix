@@ -41,6 +41,8 @@
               # Chromium for the covers (covers/render.ts). playwright-core in covers/package.json
               # must match playwright-driver.version.
               PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers-chromium}";
+              # Chinese text on the covers, the same on every machine.
+              COVERS_CJK_FONTS = "${pkgs.noto-fonts-cjk-sans-static}/share/fonts/opentype/noto-cjk";
             }
             // pkgs.lib.optionalAttrs pkgs.stdenv.hostPlatform.isLinux {
               PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";

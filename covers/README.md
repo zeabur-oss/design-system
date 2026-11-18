@@ -4,51 +4,53 @@ The image at the top of each open-source repository's README, also used as its s
 
 ## Making one
 
-A cover is a directory with:
-
-| File                | Holds                                                                     |
-| ------------------- | ------------------------------------------------------------------------- |
-| `cover.ts`          | `product`, `headline`, `tagline`, `alt`, `sources` (`Cover` in render.ts) |
-| `illustration.html` | The right-hand plate                                                      |
-| `illustration.css`  | Optional; styles only this cover needs                                    |
+A cover is a directory with a `cover.ts`: `product`, `headline`, `alt`, `slab` and `sources`
+(`Cover` in render.ts), each text in English, Traditional Chinese and Simplified Chinese. The slab
+is built from the parts in `template/slab.ts`.
 
 ```sh
 nix develop -c bash -c 'bun install && cd covers && bun render.ts identity --out ../../identity/docs/images'
 ```
 
-`--out` gets `cover-light.avif` and `cover-dark.avif`. `--previews` (default `.build/<cover>/`) gets
-both themes at full size and at 830 px wide (GitHub's README width), and `social-preview.png`.
-Look at all of them before committing. `nix develop` supplies Chromium.
+`--out` gets `cover-light.avif` and `cover-dark.avif` in English, and `cover-zh-TW-<theme>.avif`
+and `cover-zh-CN-<theme>.avif`. `--previews` (default `.build/<cover>/`) gets each of them at full
+size and at 830 px wide (GitHub's README width), and `social-preview.png`. Look at all of them
+before committing. `nix develop` supplies Chromium and the Chinese font.
 
-Covers: `identity`, `zeabur`, `catalog`, `builder`, `design-system`.
+`--repos` (default: the directory that holds this checkout) is where the files in `sources` are.
+Keep those checkouts on `main`, or quotes of strings changed since will fail.
+
+Covers: `zeabur`, `zeatend`, `catalog`, `builder`, `identity`, `design-system`.
 
 ## Rules
 
-- **Canvas.** 1280 × 640 at 2×, AVIF, about 50 KiB each. Social preview: 1× PNG, dark.
-- **Frame.** Hairlines 48 px in from each edge, crosses where they meet, hatched gutters. Text
-  column on the left 640 px, plate on the right 544 px.
-- **Lockup.** The wordmark, `vendor/zeabur/logo-with-text.svg`, 24 px high, never redrawn. A
-  sub-product's word follows it in Geist 600, on the wordmark's baseline, its capitals as high as
-  the wordmark's "b": "zeabur Identity".
-- **Headline.** Geist 52/56, weight 500, at most three lines. A headline of two sentences may go down to 46/52 so that each sentence stays on one line. What the product replaces may stand
-  above it in `<s>`. No eyebrow.
-- **Tagline.** One sentence of facts, at most three lines. Commands and files in `<code>`.
-- **Words.** By `zeabur/docs/wording.md`. Claim only what the repository does.
-- **Plate.** Flat `--surface`. It shows real text from the product: a file, a config, the UI's own
-  strings. Lines run off the right edge rather than wrap.
-- **Screenshot.** A plate can be a screenshot of the product's demo at the plate's size, one for
-  each theme. The product's screenshot manifest declares it: `zeabur/shot-<theme>.avif` comes from
-  `docs/cover-shots.yaml` in a Zeabur checkout beside this one
-  (`nix develop -c scripts/docs-shots.sh docs/cover-shots.yaml`). Never edit it.
-- **Specimen.** Geist Mono 13/24, a file label above it, notes in the left margin. A violet bar
-  (`.l.add`) marks what the product adds or relies on; a struck line with an orange-red bar
-  (`.l.del`) marks what it replaces.
-- **Quotes.** Put `data-quote` on quoted text and list its files in `sources`. The render fails
-  if the text is not in them.
-- **Colour.** Tokens only, so both themes come from one page. Orange-red only for the mark, an
-  error or what is replaced.
-- **Alt.** States the message: "Zeabur Identity: admin.conf crossed out; sign in to Kubernetes
-  with a passkey". Not a description of the picture.
+- **Canvas.** 1280 × 640 at 2×, AVIF, about 50 KiB each. Social preview: 1× PNG, English, dark.
+- **Layout.** The wordmark top left, the headline under it, the violet slab top right, an 8 px
+  rule across at 346 px, and the product's name under the rule, cut by the bottom edge. The name
+  is what tells covers apart at thumbnail size.
+- **Lockup.** The wordmark, `vendor/zeabur/logo-with-text.svg`, 24 px high, never redrawn.
+- **Name.** Geist 900 at 340 px, tight. render.ts shrinks a name wider than the cover.
+- **Headline.** What the product does for the reader, in everyday words: no CI, no YAML, no
+  kubeconfig. Geist 800, 54/58; Chinese in Noto Sans CJK 900, 50/66, with `|` where a line may
+  break. It must end above the rule; render.ts warns.
+- **Words.** By `zeabur/docs/wording.md` and the `zeabur-writing` skill. Claim only what the
+  repository does. No Enterprise, no SaaS.
+- **Slab.** One flow from what the reader has to what they get, in the product's own controls
+  and states: Zeabur's three ways to deploy end in "Running", Identity's sign-in page shows its
+  sign-in buttons. No sentence on the slab.
+- **Controls.** A control (`control()`) shows a label of the product's UI, quoted from its
+  catalogue with `quote()`; render.ts refuses a control without one. Something that is not a
+  control, such as "Linux server", is a `thing()`.
+- **Logos.** Only of software the product runs or builds, from `vendor/simple-icons`, unchanged
+  and in the owner's colour, on white. Read the owner's trademark policy first:
+  `vendor/simple-icons/NOTICE`.
+- **Quotes.** `quote()` marks text as the product's and its file goes in `sources`. The render
+  fails if the text is not in them. For a string with a placeholder, quote the template:
+  `quote("Continue with GitHub", "Continue with %provider%")`.
+- **Colour.** Tokens only, so both themes come from one page. Violet for the slab, green only for
+  a running state.
+- **Alt.** States the message, then what the slab shows: "Zeabur Identity: everyone signs in with
+  their own account. No shared admin file. Sign in with a passkey, GitHub, Google or a password."
 
 ```html
 <picture>
@@ -57,19 +59,21 @@ Covers: `identity`, `zeabur`, `catalog`, `builder`, `design-system`.
 </picture>
 ```
 
+A README in Chinese uses `cover-zh-TW-<theme>.avif` or `cover-zh-CN-<theme>.avif` the same way.
+
 ## What we avoid, and why
 
-Each of these makes an image read as generated. `render.ts` refuses the ones it can detect.
+Each of these makes an image read as generated. `render.ts` refuses the ones it can detect on the slab.
 
 | Avoid                                                | Why                                                                     |
 | ---------------------------------------------------- | ----------------------------------------------------------------------- |
 | Window chrome: three dots, title bars                | Stands for "software" without showing any. Called out by our own users. |
 | Floating cards with soft shadows, rounded everything | The SaaS card kit [1][2][3]                                             |
 | Gradient washes, violet glow, blur                   | The default purple gradient and reflexive glass [1][2][3]               |
-| Icons as decoration                                  | Icon feature boxes [3]                                                  |
+| Icons as decoration; logos of software we don't run  | Icon feature boxes [3]                                                  |
 | Mono eyebrow above the headline, all-caps labels     | Template chrome [2][4]                                                  |
 | Invented output, progress lines ending in "…"        | Shows a product that doesn't exist; quote the real one instead [4]      |
-| Mock UI built from buttons, badges, toasts           | Generic parts instead of the subject [1][4]                             |
+| Mock UI with made-up labels, badges, toasts          | Generic parts instead of the subject [1][4]                             |
 | Tilted or rotated props                              | Depth for its own sake                                                  |
 
 1. Anthropic, [Improving frontend design through Skills](https://claude.com/blog/improving-frontend-design-through-skills)
