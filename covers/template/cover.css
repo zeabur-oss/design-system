@@ -5,7 +5,7 @@
   --cover-paper: light-dark(rgb(var(--white)), rgb(var(--zGray-950)));
   --cover-slab: var(--logo-violet);
   --cover-on-slab: rgb(var(--white));
-  --cover-rule-top: 346px;
+  --cover-rule-top: 430px;
   --cover-sans: "Geist", "Cover CJK", sans-serif;
   --cover-mono: "Geist Mono", "Cover CJK", monospace;
 }

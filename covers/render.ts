@@ -211,8 +211,9 @@ try {
           process.exit(1)
         }
         await tab.$eval(".name", kernName)
-        // The name fills the width, grown or shrunk, with its capitals just under the rule.
+        // The name fills the width, grown or shrunk, with its capitals 16 px under the rule.
         await tab.evaluate(() => {
+          const rule = document.querySelector(".rule")!.getBoundingClientRect().bottom
           const el = document.querySelector<HTMLElement>(".name")!
           const style = getComputedStyle(el)
           const size = (parseFloat(style.fontSize) * (1280 - 2 * 44)) / el.offsetWidth
@@ -223,7 +224,7 @@ try {
           const ascent =
             (size - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 +
             m.fontBoundingBoxAscent
-          el.style.top = `${378 - ascent + m.actualBoundingBoxAscent}px`
+          el.style.top = `${rule + 16 - ascent + m.actualBoundingBoxAscent}px`
         })
         const overflow: string[] = await tab.evaluate(() => {
           const rule = document.querySelector(".rule")!.getBoundingClientRect().top

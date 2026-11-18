@@ -26,10 +26,10 @@ Covers: `zeabur`, `zeatend`, `catalog`, `builder`, `identity`, `design-system`.
 
 - **Canvas.** 1280 × 640 at 2×, AVIF, about 50 KiB each. Social preview: 1× PNG, English, dark.
 - **Layout.** The wordmark top left, the headline under it, the violet slab top right, an 8 px
-  rule across at 346 px, and the product's name under the rule, cut by the bottom edge. The name
+  rule across at 430 px, and the product's name under the rule, cut by the bottom edge. The name
   is what tells covers apart at thumbnail size.
 - **Lockup.** The wordmark, `vendor/zeabur/logo-with-text.svg`, 24 px high, never redrawn.
-- **Name.** One short word in Geist 900, sized to fill the width, its capitals just under the
+- **Name.** One short word in Geist 900, sized to fill the width, its capitals 16 px under the
   rule. Spacing (`template/kern.ts`): Geist's own kerning, tracked to -0.045em, and a few pairs
   opened or closed by eye. Long straight edges keep a little clearance; Geist is not drawn to
   interlock. A name of two words sets too small to fill the bottom: pick one word.
