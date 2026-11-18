@@ -4,7 +4,8 @@
   "workspaces": { "patterns": ["covers"] },
   "entry": ["covers/render.ts"],
   "dynamicallyLoaded": ["covers/*/cover.ts", "covers/**/*.css"],
-  // unplugin-icons loads these by name; `~icons/…` is its virtual module.
+  // scripts/icons.ts requires @svgr/plugin-jsx, which fallow does not follow; unplugin-icons loads
+  // the icon set by name; `~icons/…` is its virtual module.
   "ignoreDependencies": ["@svgr/plugin-jsx", "@iconify-json/ph", "~icons"],
   // popup.tsx loads this module whole through its loader.
   "ignoreExports": [{ "file": "src/components/popup-parts.ts", "exports": ["*"] }],

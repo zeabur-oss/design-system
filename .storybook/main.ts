@@ -3,6 +3,8 @@ import tailwindcss from "@tailwindcss/vite"
 import react from "@vitejs/plugin-react"
 import Icons from "unplugin-icons/vite"
 
+import { icons } from "../scripts/icons.ts"
+
 // Keep in step with the README's Vite setup.
 const config: StorybookConfig = {
   framework: "@storybook/react-vite",
@@ -10,12 +12,7 @@ const config: StorybookConfig = {
   addons: ["@storybook/addon-themes"],
   core: { disableTelemetry: true },
   viteFinal(config) {
-    config.plugins = [
-      ...(config.plugins ?? []),
-      react(),
-      tailwindcss(),
-      Icons({ scale: 1, compiler: "jsx", jsx: "react" }),
-    ]
+    config.plugins = [...(config.plugins ?? []), react(), tailwindcss(), Icons(icons)]
     return config
   },
 }
