@@ -1,0 +1,3 @@
+# Tests take only input that we write.
+paths-ignore:
+  - "**/*.test.ts"
