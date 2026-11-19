@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises"
 import { dirname, join, resolve } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 import { parseArgs } from "node:util"
+import { icons as phosphor } from "@iconify-json/ph"
 import { chromium } from "playwright-core"
 import sharp from "sharp"
 import { kernName } from "./template/kern.ts"
@@ -69,13 +70,9 @@ async function inlineLogos(html: string): Promise<string> {
   return html
 }
 
-// Phosphor, the icon set of the design system, in its bold weight.
-const phosphor: Record<string, { body: string }> = JSON.parse(
-  await readFile(join(ds, "node_modules/@iconify-json/ph/icons.json"), "utf8"),
-).icons
 function inlineIcons(html: string): string {
   return html.replace(/<phosphor-icon name="([\w-]+)"><\/phosphor-icon>/g, (_, name: string) => {
-    const icon = phosphor[`${name}-bold`]
+    const icon = phosphor.icons[`${name}-bold`]
     if (!icon) throw new Error(`${name}: not a Phosphor icon`)
     return `<svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">${icon.body}</svg>`
   })
