@@ -60,7 +60,7 @@ const noPaletteClasses = {
       for (const token of paletteClasses(text))
         context.report({
           node,
-          message: `"${token}" names a palette colour. Use the semantic token for what it is (surface-raised, track, rail, primary, danger, on-primary …; README, "Tokens and rules"), or add one in src/tokens.css.`,
+          message: `"${token}" names a palette colour. Use the semantic token for what it is (surface-raised, track, rail, primary, danger, on-primary …; docs/tokens-and-rules.md), or add one in src/tokens.css.`,
         })
     }
     return {
@@ -87,7 +87,7 @@ const noUnguardedMotion = {
       for (const token of unguardedMotionClasses(text))
         context.report({
           node,
-          message: `"${token}" moves things for people who asked for reduced motion. Prefix it with motion-safe:, or use a motion utility (popup-motion, collapse-motion, swap-in …; the design system's README, "Motion").`,
+          message: `"${token}" moves things for people who asked for reduced motion. Prefix it with motion-safe:, or use a motion utility (popup-motion, collapse-motion, swap-in …; the design system's docs/tokens-and-rules.md, "Motion").`,
         })
     }
     return {

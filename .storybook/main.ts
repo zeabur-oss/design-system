@@ -5,7 +5,7 @@ import Icons from "unplugin-icons/vite"
 
 import { icons } from "../scripts/icons.ts"
 
-// Keep in step with the README's Vite setup.
+// Keep in step with the Vite setup in the README.
 const config: StorybookConfig = {
   framework: "@storybook/react-vite",
   stories: ["../stories/**/*.stories.tsx"],

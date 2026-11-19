@@ -8,7 +8,7 @@
   },
   "settings": {
     "shadcn": {
-      "note": "See README.md, \"Tokens and rules\": give the component a variant or size rather than restyling it; use the type-* roles, the spacing scale or a named token from src/tokens.css; dynamic values are custom properties.",
+      "note": "See docs/tokens-and-rules.md: give the component a variant or size rather than restyling it; use the type-* roles, the spacing scale or a named token from src/tokens.css; dynamic values are custom properties.",
       "componentImports": [
         "^\\./[a-z-]+$",
         "^\\.\\./src/components/",
@@ -30,11 +30,11 @@
           },
           {
             "name": "framer-motion",
-            "message": "Motion is CSS here: transitions, `@starting-style` and Base UI's data-starting-style / data-ending-style (README, \"Tokens and rules\")."
+            "message": "Motion is CSS here: transitions, `@starting-style` and Base UI's data-starting-style / data-ending-style (docs/tokens-and-rules.md)."
           },
           {
             "name": "motion",
-            "message": "Motion is CSS here: transitions, `@starting-style` and Base UI's data-starting-style / data-ending-style (README, \"Tokens and rules\")."
+            "message": "Motion is CSS here: transitions, `@starting-style` and Base UI's data-starting-style / data-ending-style (docs/tokens-and-rules.md)."
           }
         ],
         "patterns": [
@@ -52,7 +52,7 @@
           },
           {
             "regex": "^(framer-motion|motion)/",
-            "message": "Motion is CSS here: transitions, `@starting-style` and Base UI's data-starting-style / data-ending-style (README, \"Tokens and rules\")."
+            "message": "Motion is CSS here: transitions, `@starting-style` and Base UI's data-starting-style / data-ending-style (docs/tokens-and-rules.md)."
           }
         ]
       }
