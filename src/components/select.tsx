@@ -13,7 +13,7 @@ interface SelectItem<Value extends string = string> {
 }
 
 const selectTriggerVariants = cva(
-  "button-secondary inline-flex w-fit min-w-0 items-center justify-between gap-2 rounded-md text-left font-medium whitespace-nowrap transition-colors duration-150 outline-none select-none data-disabled:pointer-events-none data-disabled:opacity-50 aria-invalid:ring-1 aria-invalid:ring-destructive",
+  "button-secondary inline-flex w-fit min-w-0 items-center justify-between gap-2 rounded-md text-left font-medium whitespace-nowrap transition-colors duration-150 select-none data-disabled:pointer-events-none data-disabled:opacity-50 aria-invalid:ring-1 aria-invalid:ring-destructive",
   {
     variants: {
       size: {

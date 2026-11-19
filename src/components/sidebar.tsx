@@ -98,7 +98,7 @@ function SidebarSection({
       className={cn("group/section mt-3 flex flex-col first:mt-0", className)}
     >
       <div className="flex h-6 items-center gap-0.5 pr-1 pl-2">
-        <CollapsiblePrimitive.Trigger className="flex h-6 min-w-0 flex-1 items-center gap-1 text-left type-label outline-none hover:text-secondary [&:not([data-panel-open])>svg]:-rotate-90 [&:not([data-panel-open])>svg]:opacity-100">
+        <CollapsiblePrimitive.Trigger className="flex h-6 min-w-0 flex-1 items-center gap-1 text-left type-label hover:text-secondary [&:not([data-panel-open])>svg]:-rotate-90 [&:not([data-panel-open])>svg]:opacity-100">
           <span className="truncate">{title}</span>
           <CaretDownIcon
             aria-hidden="true"
@@ -115,7 +115,7 @@ function SidebarSection({
 }
 
 const sidebarItemVariants = cva(
-  "group/item box-border flex h-8 w-full min-w-0 shrink-0 items-center gap-x-2 rounded-lg border border-transparent px-2 text-left type-body font-medium text-secondary transition-colors duration-150 outline-none select-none hover:text-main data-ancestor:text-main data-current:rounded-md data-current:text-nav-current data-popup-open:text-main [&_svg]:shrink-0",
+  "group/item box-border flex h-8 w-full min-w-0 shrink-0 items-center gap-x-2 rounded-lg border border-transparent px-2 text-left type-body font-medium text-secondary transition-colors duration-150 select-none hover:text-main data-ancestor:text-main data-current:rounded-md data-current:text-nav-current data-popup-open:text-main [&_svg]:shrink-0",
   {
     variants: {
       tone: {
@@ -326,7 +326,7 @@ function SidebarPicker({
       {
         type: render ? undefined : "button",
         className: cn(
-          "group/picker flex w-full min-w-0 shrink-0 items-center gap-2 rounded-md px-2 py-1.5 text-left type-body font-medium transition-colors outline-none hover:bg-v2-surface-hover data-popup-open:bg-v2-surface-hover",
+          "group/picker flex w-full min-w-0 shrink-0 items-center gap-2 rounded-md px-2 py-1.5 text-left type-body font-medium transition-colors hover:bg-v2-surface-hover data-popup-open:bg-v2-surface-hover",
           className,
         ),
         children: (
@@ -383,7 +383,7 @@ function SidebarCopyPill({
         type="button"
         onClick={() => void copy()}
         aria-label={copyLabel}
-        className="shrink-0 text-secondary transition-colors outline-none hover:text-main"
+        className="flex size-6 shrink-0 items-center justify-center text-secondary transition-colors hover:text-main"
       >
         {copied ? (
           <CheckIcon aria-hidden="true" className="size-4 text-ok" />

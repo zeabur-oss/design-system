@@ -95,6 +95,34 @@ const ChartStyle = (_: { id: string; config: ChartConfig }) => null
 
 const ChartTooltip = RechartsPrimitive.Tooltip
 
+function TooltipIndicator({
+  Icon,
+  hidden,
+  indicator,
+  nested,
+  color,
+}: {
+  Icon: React.ComponentType | undefined
+  hidden: boolean
+  indicator: "line" | "dot" | "dashed"
+  nested: boolean
+  color: string | undefined
+}) {
+  if (Icon) return <Icon />
+  if (hidden) return null
+  return (
+    <div
+      className={cn("shrink-0 rounded-xs border-(--color-border) bg-(--color-bg)", {
+        "h-2.5 w-2.5": indicator === "dot",
+        "w-1": indicator === "line",
+        "w-0 indicator-dashed bg-transparent": indicator === "dashed",
+        "my-0.5": nested,
+      })}
+      style={{ "--color-bg": color, "--color-border": color } as React.CSSProperties}
+    />
+  )
+}
+
 function ChartTooltipContent({
   active,
   payload,
@@ -170,7 +198,7 @@ function ChartTooltipContent({
 
             return (
               <div
-                key={index}
+                key={String(item.dataKey ?? item.name ?? key)}
                 className={cn(
                   "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
                   indicator === "dot" && "items-center",
@@ -180,29 +208,13 @@ function ChartTooltipContent({
                   formatter(item.value, item.name, item, index, item.payload)
                 ) : (
                   <>
-                    {itemConfig?.icon ? (
-                      <itemConfig.icon />
-                    ) : (
-                      !hideIndicator && (
-                        <div
-                          className={cn(
-                            "shrink-0 rounded-xs border-(--color-border) bg-(--color-bg)",
-                            {
-                              "h-2.5 w-2.5": indicator === "dot",
-                              "w-1": indicator === "line",
-                              "w-0 indicator-dashed bg-transparent": indicator === "dashed",
-                              "my-0.5": nestLabel && indicator === "dashed",
-                            },
-                          )}
-                          style={
-                            {
-                              "--color-bg": indicatorColor,
-                              "--color-border": indicatorColor,
-                            } as React.CSSProperties
-                          }
-                        />
-                      )
-                    )}
+                    <TooltipIndicator
+                      Icon={itemConfig?.icon}
+                      hidden={hideIndicator}
+                      indicator={indicator}
+                      nested={nestLabel && indicator === "dashed"}
+                      color={indicatorColor}
+                    />
                     <div
                       className={cn(
                         "flex flex-1 justify-between leading-none",
@@ -259,13 +271,13 @@ function ChartLegendContent({
     >
       {payload
         .filter((item) => item.type !== "none")
-        .map((item, index) => {
+        .map((item) => {
           const key = `${nameKey ?? item.dataKey ?? "value"}`
           const itemConfig = getPayloadConfigFromPayload(config, item, key)
 
           return (
             <div
-              key={index}
+              key={String(item.dataKey ?? item.value ?? key)}
               className={cn(
                 "flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground",
               )}

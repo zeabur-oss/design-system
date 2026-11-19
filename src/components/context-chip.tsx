@@ -29,7 +29,7 @@ function ContextChip({
       {
         type: render ? undefined : "button",
         className: cn(
-          "group/context flex w-full min-w-0 items-center gap-2 rounded-lg border border-main bg-card px-2 py-1.5 text-left transition-colors outline-none hover:bg-v2-surface-hover focus-visible:ring-2 focus-visible:ring-ring data-popup-open:bg-v2-surface-hover",
+          "group/context flex w-full min-w-0 items-center gap-2 rounded-lg border border-main bg-card px-2 py-1.5 text-left transition-colors hover:bg-v2-surface-hover focus-visible:ring-2 focus-visible:ring-ring data-popup-open:bg-v2-surface-hover",
           className,
         ),
         children: (

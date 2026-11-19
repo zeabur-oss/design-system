@@ -26,7 +26,7 @@ function Radio({ className, ...props }: RadioPrimitive.Root.Props) {
       data-slot="radio"
       className={cn(
         ring,
-        "group/radio cursor-pointer outline-none hover:border-primary/60 data-checked:border-primary data-disabled:cursor-not-allowed data-disabled:opacity-50 data-disabled:hover:border-input",
+        "group/radio relative cursor-pointer after:absolute after:-inset-1 hover:border-primary/60 data-checked:border-primary data-disabled:cursor-not-allowed data-disabled:opacity-50 data-disabled:hover:border-input",
         className,
       )}
       {...props}
@@ -49,7 +49,7 @@ function RadioOption({
     <RadioPrimitive.Root
       data-slot="radio-option"
       className={cn(
-        "group/radio flex w-full cursor-pointer items-start gap-3 rounded-md border border-v2-border px-3 py-2.5 text-left transition-colors outline-none hover:bg-v2-surface-hover data-checked:border-primary data-checked:bg-primary/5 data-disabled:cursor-not-allowed data-disabled:opacity-50",
+        "group/radio flex w-full cursor-pointer items-start gap-3 rounded-md border border-v2-border px-3 py-2.5 text-left transition-colors hover:bg-v2-surface-hover data-checked:border-primary data-checked:bg-primary/5 data-disabled:cursor-not-allowed data-disabled:opacity-50",
         className,
       )}
       {...props}

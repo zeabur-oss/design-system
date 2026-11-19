@@ -33,7 +33,7 @@ function SectionNav({
                 aria-current={active ? "location" : undefined}
                 onClick={onSelect ? (event) => onSelect(item.id, event) : undefined}
                 className={cn(
-                  "flex h-control-sm items-center gap-2 rounded-md px-2.5 type-body whitespace-nowrap transition-colors outline-none hover:bg-v2-surface-hover hover:text-main focus-visible:ring-2 focus-visible:ring-ring",
+                  "flex h-control-sm items-center gap-2 rounded-md px-2.5 type-body whitespace-nowrap transition-colors hover:bg-v2-surface-hover hover:text-main focus-visible:ring-2 focus-visible:ring-ring",
                   active ? "bg-v2-surface-hover font-medium text-main" : "text-secondary",
                 )}
               >

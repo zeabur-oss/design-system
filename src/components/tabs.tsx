@@ -61,7 +61,7 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
     <TabsPrimitive.Tab
       data-slot="tabs-trigger"
       className={cn(
-        "relative z-raised inline-flex h-control-sm shrink-0 items-center justify-center gap-1.5 rounded px-3 text-sm max-sm:px-2 font-medium whitespace-nowrap text-secondary transition-colors duration-150 outline-none hover:text-main disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:text-main has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative z-raised inline-flex h-control-sm shrink-0 items-center justify-center gap-1.5 rounded px-3 text-sm max-sm:px-2 font-medium whitespace-nowrap text-secondary transition-colors duration-150 hover:text-main disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-active:text-main has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         "tabs-vertical:box-border tabs-vertical:w-full tabs-vertical:justify-start tabs-vertical:gap-2 tabs-vertical:rounded-lg tabs-vertical:border tabs-vertical:border-transparent tabs-vertical:px-2 tabs-vertical:type-body tabs-vertical:[&_svg:not([class*='size-'])]:size-3.5 tabs-vertical:data-active:rounded-md tabs-vertical:data-active:nav-active",
         className,
       )}
