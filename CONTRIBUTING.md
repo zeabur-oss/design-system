@@ -44,7 +44,7 @@ Components are on Base UI, in shadcn/ui's style (`cva` variants, `cn`, `data-slo
 an app repeats becomes a variant or size here, not a className in the app.
 
 - **Classes**: a component's classes are `cva` functions in `src/variants/<name>.ts`, one for each
-  part (`cardVariants`, `cardTitleVariants`). These modules import only `class-variance-authority`:
+  part (`cardVariants`, `cardTitleVariants`). These modules import only `class-variance-authority` and each other (`tone.ts` holds the status tones):
   server-rendered pages call them without React. Lint rejects a `cva` anywhere else.
 
 - **Imports**: siblings as `./<name>` (apps compile these sources with their own `@/` alias, so

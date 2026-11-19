@@ -1,13 +1,7 @@
 import { cn } from "cn"
+import { toneFill } from "../variants/tone"
 
 const at = (share: number) => `${Math.min(Math.max(share, 0), 1) * 100}%`
-
-const fills = {
-  ok: "bg-usage-normal",
-  over: "bg-usage-severe",
-  warn: "bg-usage-warning",
-  muted: "bg-usage-reserved",
-} as const
 
 /** `value` and `mark` are shares of the whole, 0 to 1. */
 function Meter({
@@ -21,7 +15,7 @@ function Meter({
 }: {
   value?: number
   mark?: number
-  tone?: keyof typeof fills
+  tone?: keyof typeof toneFill
   size?: "sm" | "md"
   unbounded?: boolean
   /** Without it the bar is hidden from assistive technology. */
@@ -44,7 +38,7 @@ function Meter({
       )}
     >
       {value === undefined ? null : (
-        <div className={cn("absolute inset-y-0 left-0 w-(--value) rounded-full", fills[tone])} />
+        <div className={cn("absolute inset-y-0 left-0 w-(--value) rounded-full", toneFill[tone])} />
       )}
       {mark === undefined || mark <= 0 ? null : (
         <div className="absolute -inset-y-px left-(--mark) w-0.5 bg-foreground" />

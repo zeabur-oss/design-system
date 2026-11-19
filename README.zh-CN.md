@@ -100,7 +100,7 @@ import { Button } from "@zeabur-oss/design-system/components/button"
 ```ts
 import { buttonVariants } from "@zeabur-oss/design-system/variants/button"
 
-buttonVariants({ variant: "primary", size: "lg" })
+buttonVariants({ variant: "default", size: "lg" })
 ```
 
 标志写 `brand-logo h-5`，分区标签写 `type-label`。

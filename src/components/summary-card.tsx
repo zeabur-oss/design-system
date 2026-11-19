@@ -2,6 +2,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import { cn } from "cn"
 import type { ReactNode } from "react"
+import { toneDot, type Tone } from "../variants/tone"
 
 function SummaryCard({ className, ...props }: React.ComponentProps<"section">) {
   return (
@@ -26,20 +27,12 @@ function SummaryCardMain({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-const toneDot = {
-  ok: "bg-ok",
-  progress: "bg-progress",
-  warn: "bg-warn",
-  fail: "bg-fail",
-  idle: "bg-idle",
-} as const
-
 function SummaryCardStatus({
   tone,
   className,
   children,
 }: {
-  tone: keyof typeof toneDot
+  tone: Tone
   className?: string
   children: ReactNode
 }) {

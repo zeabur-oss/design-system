@@ -3,17 +3,9 @@ import PlusIcon from "~icons/ph/plus"
 import TrashIcon from "~icons/ph/trash"
 
 import { Button } from "../src/components/button"
+import { buttonVariantStyles } from "../src/variants/button"
 
-const variants = [
-  "default",
-  "secondary",
-  "outline",
-  "ghost",
-  "muted",
-  "destructive",
-  "secondary-destructive",
-  "link",
-] as const
+const variants = Object.keys(buttonVariantStyles) as (keyof typeof buttonVariantStyles)[]
 const sizes = ["xs", "sm", "default", "lg"] as const
 
 const meta = {

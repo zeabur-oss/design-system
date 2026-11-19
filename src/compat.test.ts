@@ -190,10 +190,10 @@ describe("exported names", () => {
 
 describe("variants", () => {
   // Server-rendered pages load these modules without React.
-  test("import only class-variance-authority", () => {
+  test("import only class-variance-authority and each other", () => {
     for (const file of new Bun.Glob("*.ts").scanSync(resolve(import.meta.dirname, "variants"))) {
       const imports = [...read(`src/variants/${file}`).matchAll(/from "([^"]+)"/g)].map((m) => m[1])
-      expect(imports).toEqual(["class-variance-authority"])
+      for (const name of imports) expect(name).toMatch(/^(class-variance-authority|\.\/[a-z-]+)$/)
     }
   })
 })
