@@ -5,7 +5,7 @@ description: Decide whether something in a Zeabur UI should animate, and how —
 
 # Motion in the design system
 
-The README's "Motion" section has the table and the full rules; this is the short form.
+The "Motion" section of `docs/tokens-and-rules.md` has the table and the full rules; this is the short form.
 
 ## Animate, or not
 

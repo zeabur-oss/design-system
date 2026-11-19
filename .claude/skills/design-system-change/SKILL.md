@@ -5,7 +5,7 @@ description: Change @zeabur-oss/design-system — add or restyle a component, va
 
 # Changing the design system
 
-Rules are in `CONTRIBUTING.md` ("Components") and the README ("Tokens and rules"); read them first.
+Rules are in `CONTRIBUTING.md` ("Components") and `docs/tokens-and-rules.md`; read them first.
 
 ## Decide where the change belongs
 

@@ -62,10 +62,10 @@ an app repeats becomes a variant or size here, not a className in the app.
   rounded 6 (`rounded-md`), navigation rows and banners rounded 8, cards rounded 12. Violet
   (`primary`, `brand`) is for actions, focus and the current place; orange-red (`danger`,
   `destructive`) for errors. Body text is `type-body`, section labels `type-label`. Motion uses
-  the motion utilities, `ease-emphasized` and the four durations (README, "Motion").
+  the motion utilities, `ease-emphasized` and the four durations (docs/tokens-and-rules.md, "Motion").
 - **Only tokens**: no arbitrary value, hex colour or palette class (`zGray-*`, `white`) in a
   component or story, and no inline style but custom properties. Use the token for what the thing
-  is (README, "Tokens and rules"); when none fits, add one to `src/tokens.css` (light and dark, a
+  is (docs/tokens-and-rules.md); when none fits, add one to `src/tokens.css` (light and dark, a
   Tailwind theme variable if it makes a class). The palettes appear only there. `bun run lint`
   checks all of this; a disable comment needs a reason after `--` and is rare.
 - **Restyling**: a component does not take colour, spacing, shape or type from a className, its
@@ -118,7 +118,7 @@ bot tag the merge commit, and the tag publishes the package to npm (`next` for a
 
 ## Vendored files
 
-`vendor/` holds files copied verbatim (see the README). After changing one, run `bun run test`. When changing workflow or shell files, also run
+`vendor/` holds files copied verbatim (see `docs/tokens-and-rules.md`). After changing one, run `bun run test`. When changing workflow or shell files, also run
 `jactionlint` and `shellcheck scripts/*.sh`.
 
 ## Trademarks
