@@ -20,6 +20,27 @@ function Dock({ className, ...props }: React.ComponentProps<"section">) {
 }
 
 /** The dock's top edge, dragged or moved with the arrow keys to change its height. */
+type ResizerRange = { value: number; min: number; max: number; step: number }
+
+function keyTarget(key: string, { value, min, max, step }: ResizerRange): number | undefined {
+  switch (key) {
+    case "ArrowUp":
+      return value + step
+    case "ArrowDown":
+      return value - step
+    case "PageUp":
+      return value + step * 4
+    case "PageDown":
+      return value - step * 4
+    case "Home":
+      return max
+    case "End":
+      return min
+    default:
+      return undefined
+  }
+}
+
 function DockResizer({
   value,
   min,
@@ -63,26 +84,13 @@ function DockResizer({
         start.current = null
       }}
       onKeyDown={(event) => {
-        const next =
-          event.key === "ArrowUp"
-            ? value + step
-            : event.key === "ArrowDown"
-              ? value - step
-              : event.key === "PageUp"
-                ? value + step * 4
-                : event.key === "PageDown"
-                  ? value - step * 4
-                  : event.key === "Home"
-                    ? max
-                    : event.key === "End"
-                      ? min
-                      : undefined
+        const next = keyTarget(event.key, { value, min, max, step })
         if (next === undefined) return
         event.preventDefault()
         onValueChange(clamp(next))
       }}
       className={cn(
-        "absolute inset-x-0 -top-1 z-raised h-2 cursor-row-resize touch-none outline-none select-none after:absolute after:inset-x-0 after:top-0.75 after:h-0.5 after:transition-colors after:duration-150 hover:after:bg-primary focus-visible:after:bg-primary max-sm:hidden",
+        "absolute inset-x-0 -top-1 z-raised h-2 cursor-row-resize before:absolute before:inset-x-0 before:-inset-y-2 touch-none select-none after:absolute after:inset-x-0 after:top-0.75 after:h-0.5 after:transition-colors after:duration-150 hover:after:bg-primary focus-visible:after:bg-primary max-sm:hidden",
         className,
       )}
       {...props}
@@ -147,7 +155,7 @@ function DockTab({
     >
       <TabsPrimitive.Tab
         className={cn(
-          "flex h-full max-w-60 min-w-0 items-center gap-1.5 pr-1.5 pl-2.5 type-body outline-none [&_svg]:size-3.5 [&_svg]:shrink-0",
+          "flex h-full max-w-60 min-w-0 items-center gap-1.5 pr-1.5 pl-2.5 type-body [&_svg]:size-3.5 [&_svg]:shrink-0",
           !onClose && "pr-2.5",
           className,
         )}
@@ -169,7 +177,7 @@ function DockTab({
           tabIndex={-1}
           aria-label={closeLabel}
           onClick={onClose}
-          className="mr-1 flex size-5 shrink-0 items-center justify-center rounded text-tertiary transition-colors duration-150 outline-none hover:bg-v2-surface-active hover:text-main"
+          className="mr-1 flex size-6 shrink-0 items-center justify-center rounded text-tertiary transition-colors duration-150 hover:bg-v2-surface-active hover:text-main"
         >
           <XIcon aria-hidden="true" className="size-3" />
         </button>
@@ -197,7 +205,7 @@ function DockBar({ className, ...props }: React.ComponentProps<"button">) {
       type="button"
       data-slot="dock-bar"
       className={cn(
-        "flex h-8 w-full shrink-0 items-center gap-2 border-t border-main bg-chrome px-3 text-left type-meta text-secondary transition-colors duration-150 outline-none hover:text-main focus-visible:text-main [&_svg]:size-3.5 [&_svg]:shrink-0",
+        "flex h-8 w-full shrink-0 items-center gap-2 border-t border-main bg-chrome px-3 text-left type-meta text-secondary transition-colors duration-150 hover:text-main focus-visible:text-main [&_svg]:size-3.5 [&_svg]:shrink-0",
         className,
       )}
       {...props}

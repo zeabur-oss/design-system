@@ -79,7 +79,7 @@ function SummaryCardCount({ className, render, ...props }: useRender.ComponentPr
       {
         type: "button",
         className: cn(
-          "-mx-1 flex items-center gap-1 rounded-md px-1 py-0.5 type-heading font-semibold text-main tabular-nums transition-colors outline-none hover:bg-v2-surface-hover aria-expanded:bg-v2-surface-hover [&>svg]:size-4 [&>svg]:text-secondary motion-safe:[&>svg]:transition-transform motion-safe:[&>svg]:duration-fast motion-safe:[&>svg]:ease-emphasized aria-expanded:[&>svg]:rotate-180",
+          "-mx-1 flex items-center gap-1 rounded-md px-1 py-0.5 type-heading font-semibold text-main tabular-nums transition-colors hover:bg-v2-surface-hover aria-expanded:bg-v2-surface-hover [&>svg]:size-4 [&>svg]:text-secondary motion-safe:[&>svg]:transition-transform motion-safe:[&>svg]:duration-fast motion-safe:[&>svg]:ease-emphasized aria-expanded:[&>svg]:rotate-180",
           className,
         ),
       },
