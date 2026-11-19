@@ -1,6 +1,6 @@
 {
   "name": "@zeabur/covers",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "description": "README covers and social previews for Zeabur's open-source repositories, rendered from the design system's tokens",
   "license": "Apache-2.0",
