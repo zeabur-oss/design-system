@@ -1,3 +1,5 @@
+**English** · [繁體中文](README.zh-TW.md) · [简体中文](README.zh-CN.md)
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/cover-dark.avif">
   <img alt="Zeabur Design System: build screens that look like Zeabur, right in light and dark. Four tokens with their light and dark colours." src="docs/images/cover-light.avif">
