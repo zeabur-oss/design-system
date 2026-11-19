@@ -277,7 +277,7 @@ function ChartLegendContent({
 
           return (
             <div
-              key={String(item.dataKey ?? key)}
+              key={String(item.dataKey ?? item.value ?? key)}
               className={cn(
                 "flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground",
               )}
