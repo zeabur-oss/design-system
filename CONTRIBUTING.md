@@ -72,7 +72,7 @@ an app repeats becomes a variant or size here, not a className in the app.
   own included when it uses another (Drawer's DialogHeader): give it a variant or a prop
   (`variant="panel"`, `tone`, `endSlot`). Text sizes and named sizes go in the variant that owns
   them, since `cn` does not merge `type-*` or named sizes with Tailwind's.
-- **Names are an interface**: apps written for engawa's design system use the same component,
+- **Names are an interface**: apps that import them use the same component,
   prop, variant, token and utility names (`src/compat.test.ts` lists them). Add; do not rename or
   remove without a major change that says so.
 - Menus, popovers, tooltips and dialogs go through `src/components/popup.tsx`, which loads their

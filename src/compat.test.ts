@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { resolve } from "node:path"
 
-// Names that apps written for engawa's design system import.
+// Names that apps import.
 
 const read = (path: string) => readFileSync(resolve(import.meta.dirname, "..", path), "utf8")
 
@@ -164,7 +164,7 @@ const utilities = [
   "sidebar-icon-bar",
 ]
 
-describe("engawa's design system's names", () => {
+describe("exported names", () => {
   for (const [name, names] of Object.entries(exports)) {
     test(`components/${name} exports ${names.join(", ")}`, async () => {
       const module = (await import(`./components/${name}.tsx`)) as Record<string, unknown>

@@ -147,9 +147,6 @@ Third-party content in this repository:
 
 - [shadcn/ui](https://ui.shadcn.com) components (`src/components`) and base styles
   (`vendor/shadcn/shadcn.css`), MIT License.
-- The package's shape, the popup loader (`src/components/popup.tsx`) and several components'
-  structure come from [engawa's design system](https://github.com/engawahq/design-system)
-  (Apache-2.0).
 - Geist and Geist Mono by Vercel with basement.studio (SIL Open Font License 1.1,
   `vendor/geist/LICENSE.txt`).
 - Phosphor icons (MIT License), compiled into the app by unplugin-icons from `@iconify-json/ph`.
