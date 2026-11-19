@@ -120,6 +120,5 @@ Apache-2.0（见 [LICENSE](LICENSE)），上述商标除外。本项目按 [Deve
 本仓库中的第三方内容：
 
 - [shadcn/ui](https://ui.shadcn.com) 的组件（`src/components`）和基础样式（`vendor/shadcn/shadcn.css`），MIT License。
-- 包的结构、弹出层加载器（`src/components/popup.tsx`）和部分组件的结构，来自 [engawa 的 design system](https://github.com/engawahq/design-system)（Apache-2.0）。
 - Vercel 与 basement.studio 的 Geist 和 Geist Mono（SIL Open Font License 1.1，`vendor/geist/LICENSE.txt`）。
 - Phosphor 图标（MIT License），由 unplugin-icons 从 `@iconify-json/ph` 编译进应用。

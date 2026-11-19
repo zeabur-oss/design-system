@@ -1,5 +1,3 @@
-// Adapted from engawa's design system (github.com/engawahq/design-system, Apache-2.0).
-//
 // The popups' code loads when the browser is next idle, or sooner when a trigger is used. Until then
 // a trigger renders the same element and ARIA state, and a press opens its popup on arrival.
 import { mergeProps } from "@base-ui/react/merge-props"

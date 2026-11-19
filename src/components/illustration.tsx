@@ -30,7 +30,7 @@ const tones: Record<IllustrationKind, string> = {
   done: "text-ok",
 }
 
-/** `seed` is accepted and ignored, for apps written against engawa's design system. */
+/** `seed` is accepted and ignored, for apps that already pass it. */
 function Illustration({
   kind,
   className,
