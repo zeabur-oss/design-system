@@ -1,27 +1,6 @@
-import { cva, type VariantProps } from "class-variance-authority"
+import type { VariantProps } from "class-variance-authority"
 import { cn } from "cn"
-
-/** The column every block of a page sits in, so their left and right edges line up; `gap` spaces the blocks. */
-const pageColumnVariants = cva("mx-auto flex w-full min-w-0 flex-col px-4 md:px-8", {
-  variants: {
-    width: {
-      content: "max-w-page-content",
-      wide: "max-w-page-wide",
-      full: "",
-    },
-    gap: {
-      none: "",
-      sm: "gap-3",
-      md: "gap-6",
-      lg: "gap-8",
-      xl: "gap-10",
-    },
-  },
-  defaultVariants: {
-    width: "wide",
-    gap: "none",
-  },
-})
+import { pageColumnVariants } from "../variants/page-column"
 
 function PageColumn({
   className,

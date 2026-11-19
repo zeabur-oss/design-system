@@ -73,7 +73,8 @@
     "shadcn/no-unknown-classes": "error",
     "shadcn/require-static-classes": "error",
     "zeabur/no-palette-classes": "error",
-    "zeabur/no-unguarded-motion": "error"
+    "zeabur/no-unguarded-motion": "error",
+    "zeabur/no-cva-outside-variants": "error"
   },
   "overrides": [
     {

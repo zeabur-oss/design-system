@@ -101,9 +101,33 @@ const noUnguardedMotion = {
   },
 }
 
+const noCvaOutsideVariants = {
+  meta: {
+    type: "problem",
+    docs: { description: "Define every cva in src/variants/<name>.ts." },
+  },
+  create(context) {
+    if (/[\\/]src[\\/]variants[\\/][^\\/]+\.ts$/.test(context.filename)) return {}
+    return {
+      CallExpression(node) {
+        if (node.callee.type === "Identifier" && node.callee.name === "cva")
+          context.report({
+            node,
+            message:
+              "Define this cva in src/variants/<name>.ts and import it: server-rendered pages use those modules without React.",
+          })
+      },
+    }
+  },
+}
+
 export default {
   meta: { name: "zeabur" },
-  rules: { "no-palette-classes": noPaletteClasses, "no-unguarded-motion": noUnguardedMotion },
+  rules: {
+    "no-palette-classes": noPaletteClasses,
+    "no-unguarded-motion": noUnguardedMotion,
+    "no-cva-outside-variants": noCvaOutsideVariants,
+  },
 }
 
 export { paletteClasses, unguardedMotionClasses }
