@@ -1,8 +1,6 @@
 // Bun's runtime plugins cannot resolve a bare specifier by pattern (unplugin's Bun adapter relies on
 // that), so every icon is registered by name.
-import { readFileSync } from "node:fs"
-import { resolve } from "node:path"
-
+import { icons as set } from "@iconify-json/ph"
 import Icons from "unplugin-icons"
 
 import { icons } from "./icons.ts"
@@ -13,10 +11,6 @@ const load = plugin.load as (
   this: { addWatchFile(path: string): void },
   id: string,
 ) => Promise<{ code: string }>
-
-const set = JSON.parse(
-  readFileSync(resolve(import.meta.dirname, "../node_modules/@iconify-json/ph/icons.json"), "utf8"),
-) as { icons: Record<string, unknown>; aliases?: Record<string, unknown> }
 
 Bun.plugin({
   name: "unplugin-icons (test)",
