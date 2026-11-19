@@ -12,7 +12,7 @@
   "ignorePatterns": ["storybook-static/**"],
   "duplicates": { "ignore": ["vendor/**"] },
   "health": { "ignore": ["vendor/**"] },
-  // Components import components and variants; variants import nothing; stories import components.
+  // Components import components and variants; variants import nothing; stories import components and variants.
   "boundaries": {
     "zones": [
       { "name": "components", "patterns": ["src/components/**"] },
@@ -24,7 +24,7 @@
     "rules": [
       { "from": "components", "allow": ["variants"] },
       { "from": "variants", "allow": [] },
-      { "from": "stories", "allow": ["components"] },
+      { "from": "stories", "allow": ["components", "variants"] },
       { "from": "lint", "allow": [] },
       { "from": "covers", "allow": [] }
     ],

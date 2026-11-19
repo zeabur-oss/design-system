@@ -120,7 +120,7 @@ call them and write the classes into the templates:
 ```ts
 import { buttonVariants } from "@zeabur-oss/design-system/variants/button"
 
-buttonVariants({ variant: "primary", size: "lg" })
+buttonVariants({ variant: "default", size: "lg" })
 ```
 
 Write `brand-logo h-5` for the logo and `type-label` for a section label.

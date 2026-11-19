@@ -1,5 +1,6 @@
 import { cn } from "cn"
 import type { ReactNode } from "react"
+import { toneDot, type Tone } from "../variants/tone"
 
 function StatGroup({ className, ...props }: React.ComponentProps<"dl">) {
   return (
@@ -14,14 +15,6 @@ function StatGroup({ className, ...props }: React.ComponentProps<"dl">) {
   )
 }
 
-const toneDot = {
-  ok: "bg-ok",
-  progress: "bg-progress",
-  warn: "bg-warn",
-  fail: "bg-fail",
-  idle: "bg-idle",
-} as const
-
 function Stat({
   label,
   value,
@@ -32,7 +25,7 @@ function Stat({
   label: ReactNode
   value: ReactNode
   hint?: ReactNode
-  tone?: keyof typeof toneDot
+  tone?: Tone
   className?: string
 }) {
   return (

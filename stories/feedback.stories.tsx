@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 import InfoIcon from "~icons/ph/info"
-import LightbulbIcon from "~icons/ph/lightbulb"
 import WarningIcon from "~icons/ph/warning"
 import CubeIcon from "~icons/ph/cube"
 import KeyIcon from "~icons/ph/key"
@@ -9,7 +8,6 @@ import { toast } from "sonner"
 
 import { Alert, AlertDescription, AlertTitle } from "../src/components/alert"
 import { Badge } from "../src/components/badge"
-import { Banner, BannerDescription, BannerTitle } from "../src/components/banner"
 import { Button } from "../src/components/button"
 import {
   Empty,
@@ -25,6 +23,7 @@ import { SegmentedBar } from "../src/components/segmented-bar"
 import { Skeleton } from "../src/components/skeleton"
 import { Toaster } from "../src/components/sonner"
 import { LoadingDots, Spinner } from "../src/components/spinner"
+import { badgeVariantStyles } from "../src/variants/badge"
 
 const meta = {
   title: "Components/Feedback",
@@ -37,21 +36,7 @@ type Story = StoryObj<typeof meta>
 export const Badges: Story = {
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
-      {(
-        [
-          "default",
-          "secondary",
-          "outline",
-          "ghost",
-          "destructive",
-          "ok",
-          "progress",
-          "warn",
-          "fail",
-          "idle",
-          "link",
-        ] as const
-      ).map((variant) => (
+      {(Object.keys(badgeVariantStyles) as (keyof typeof badgeVariantStyles)[]).map((variant) => (
         <Badge key={variant} variant={variant}>
           {variant}
         </Badge>
@@ -102,26 +87,6 @@ export const Alerts: Story = {
         <AlertTitle>With role="status"</AlertTitle>
         <AlertDescription>Announced politely, for a state that changed.</AlertDescription>
       </Alert>
-    </div>
-  ),
-}
-
-export const Banners: Story = {
-  render: () => (
-    <div className="flex max-w-xl flex-col gap-3">
-      <Banner>
-        <InfoIcon aria-hidden="true" />
-        <BannerTitle>Default</BannerTitle>
-        <BannerDescription>A violet note for something new.</BannerDescription>
-      </Banner>
-      <Banner variant="tips">
-        <LightbulbIcon aria-hidden="true" />
-        <BannerDescription>Tips: press ⌘K to search.</BannerDescription>
-      </Banner>
-      <Banner variant="warn">
-        <WarningIcon aria-hidden="true" />
-        <BannerDescription>This will delete every volume.</BannerDescription>
-      </Banner>
     </div>
   ),
 }
