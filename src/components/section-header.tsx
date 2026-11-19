@@ -1,18 +1,7 @@
-import { cva, type VariantProps } from "class-variance-authority"
+import type { VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import type { ReactNode } from "react"
-
-const sectionTitleVariants = cva("min-w-0 text-main", {
-  variants: {
-    size: {
-      default: "type-heading",
-      sm: "type-body font-medium",
-    },
-  },
-  defaultVariants: {
-    size: "default",
-  },
-})
+import { sectionTitleVariants } from "../variants/section-header"
 
 /** A section's title, its count, one line on what it holds, and its action at the right. */
 function SectionHeader({

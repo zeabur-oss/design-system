@@ -1,18 +1,7 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import type { VariantProps } from "class-variance-authority"
 import { cn } from "cn"
-
-const tableVariants = cva("w-full caption-bottom text-sm", {
-  variants: {
-    variant: {
-      default: "",
-      ruled: "[&_tbody_td]:px-6 [&_tbody_td]:py-4 [&_th]:px-6 [&_th]:py-3 [&_thead]:bg-table-head",
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-})
+import { tableVariants } from "../variants/table"
 
 function TableContainer({ className, ...props }: React.ComponentProps<"div">) {
   return (

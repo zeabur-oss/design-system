@@ -1,25 +1,12 @@
-import { cva, type VariantProps } from "class-variance-authority"
+import type { VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import type { ReactNode } from "react"
+import { timelineDotVariants } from "../variants/timeline"
 
 /** Things that happened, newest first. */
 function Timeline({ className, ...props }: React.ComponentProps<"ol">) {
   return <ol data-slot="timeline" className={cn("flex min-w-0 flex-col", className)} {...props} />
 }
-
-const timelineDotVariants = cva("relative z-1 mt-1.5 size-2 shrink-0 rounded-full", {
-  variants: {
-    tone: {
-      neutral: "bg-idle",
-      ok: "bg-ok",
-      progress: "bg-progress",
-      warn: "bg-warn",
-      fail: "bg-fail",
-      brand: "bg-brand",
-    },
-  },
-  defaultVariants: { tone: "neutral" },
-})
 
 function TimelineItem({
   tone,

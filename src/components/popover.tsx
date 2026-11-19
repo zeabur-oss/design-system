@@ -1,5 +1,5 @@
 import type { Popover as PopoverPrimitive } from "@base-ui/react/popover"
-import { cva, type VariantProps } from "class-variance-authority"
+import type { VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 
 import {
@@ -10,6 +10,7 @@ import {
   type RootProps,
   type TriggerProps,
 } from "./popup"
+import { popoverTriggerVariants } from "../variants/popover"
 
 function Popover({
   open,
@@ -28,20 +29,6 @@ function Popover({
     />
   )
 }
-
-const popoverTriggerVariants = cva("", {
-  variants: {
-    variant: {
-      default: "",
-      ghost:
-        "rounded-md text-secondary hover:bg-v2-surface-hover hover:text-main aria-expanded:bg-v2-surface-hover aria-expanded:text-main",
-      plain: "rounded-md text-secondary hover:text-main",
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-})
 
 function PopoverTrigger({
   className,

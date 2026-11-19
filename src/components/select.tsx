@@ -1,9 +1,10 @@
 import { Select as SelectPrimitive } from "@base-ui/react/select"
-import { cva, type VariantProps } from "class-variance-authority"
+import type { VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import type { ReactNode } from "react"
 import CaretDownIcon from "~icons/ph/caret-down"
 import CheckIcon from "~icons/ph/check"
+import { selectTriggerVariants } from "../variants/select"
 
 interface SelectItem<Value extends string = string> {
   value: Value
@@ -11,21 +12,6 @@ interface SelectItem<Value extends string = string> {
   /** When the label is in another language than the page's (a language's own name). */
   lang?: string
 }
-
-const selectTriggerVariants = cva(
-  "button-secondary inline-flex w-fit min-w-0 items-center justify-between gap-2 rounded-md text-left font-medium whitespace-nowrap transition-colors duration-150 select-none data-disabled:pointer-events-none data-disabled:opacity-50 aria-invalid:ring-1 aria-invalid:ring-destructive",
-  {
-    variants: {
-      size: {
-        default: "h-control-md min-w-30 px-3 text-sm",
-        sm: "h-control-xs px-2 text-xs",
-      },
-    },
-    defaultVariants: {
-      size: "default",
-    },
-  },
-)
 
 function Select<Value extends string>({
   items,

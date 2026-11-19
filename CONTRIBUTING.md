@@ -45,7 +45,7 @@ an app repeats becomes a variant or size here, not a className in the app.
 
 - **Classes**: a component's classes are `cva` functions in `src/variants/<name>.ts`, one for each
   part (`cardVariants`, `cardTitleVariants`). These modules import only `class-variance-authority`:
-  server-rendered pages call them without React.
+  server-rendered pages call them without React. Lint rejects a `cva` anywhere else.
 
 - **Imports**: siblings as `./<name>` (apps compile these sources with their own `@/` alias, so
   lint rejects `@/` imports); `cn` from `cn`; icons as `~icons/ph/<name>` (Phosphor, one import per
