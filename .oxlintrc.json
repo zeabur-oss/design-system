@@ -2,7 +2,7 @@
   "$schema": "./node_modules/oxlint/configuration_schema.json",
   "ignorePatterns": ["storybook-static", "vendor"],
   "plugins": ["eslint", "typescript", "unicorn", "oxc", "react", "jsx-a11y"],
-  "jsPlugins": ["@shadcn/lint", "./lint/zeabur.js"],
+  "jsPlugins": ["@shadcn/lint", "./lint/zeabur.js", "./lint/no-unsound-cast.js"],
   "categories": {
     "correctness": "error"
   },
@@ -57,6 +57,8 @@
         ]
       }
     ],
+    "typescript/no-explicit-any": "error",
+    "casts/no-unsound-cast": "error",
     "shadcn/no-restyle": [
       "error",
       {
