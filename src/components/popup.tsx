@@ -8,7 +8,6 @@ import {
   useState,
   useSyncExternalStore,
   type ComponentProps,
-  type KeyboardEvent,
   type ReactElement,
   type ReactNode,
 } from "react"
@@ -139,6 +138,13 @@ export function PendingRoot({
   return <RequestOpen value={() => setOpen(true)}>{children}</RequestOpen>
 }
 
+/** What the pending trigger reads of a key press. */
+export type TriggerKeyPress = {
+  key: string
+  currentTarget: { tagName: string }
+  preventDefault(): void
+}
+
 // A native button turns Enter and Space into a click; another element needs them handled.
 export function pendingTriggerProps(open: () => void) {
   const preload = () => void popups.load()
@@ -147,7 +153,7 @@ export function pendingTriggerProps(open: () => void) {
     onPointerDown: preload,
     onFocus: preload,
     onClick: open,
-    onKeyDown: (event: KeyboardEvent<Element>) => {
+    onKeyDown: (event: TriggerKeyPress) => {
       if (event.currentTarget.tagName === "BUTTON") return
       if (event.key !== "Enter" && event.key !== " ") return
       event.preventDefault()
