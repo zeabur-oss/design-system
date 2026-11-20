@@ -63,13 +63,14 @@ const pathOf = (element: Element) => {
 
 // Swapping in Base UI's triggers replaces the focused element; refocus its replacement.
 function keepFocus(notify: () => void) {
-  const focused = document.activeElement
-  const path = focused && focused !== document.body ? pathOf(focused) : undefined
+  const active = document.activeElement
+  const focused = active && active !== document.body ? active : undefined
+  const path = focused && pathOf(focused)
   notify()
-  if (!path) return
+  if (!focused || !path) return
   // After React has rendered the change, which it does in a microtask.
   setTimeout(() => {
-    if (focused!.isConnected || document.activeElement !== document.body) return
+    if (focused.isConnected || document.activeElement !== document.body) return
     const element = path.reduce<Element | undefined>(
       (at, index) => (at ? childrenOf(at)[index] : undefined),
       document.documentElement,

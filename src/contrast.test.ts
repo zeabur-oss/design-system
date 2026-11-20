@@ -2,47 +2,60 @@ import { expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { resolve } from "node:path"
 
+import { group } from "./test-support"
+
 const tokens = readFileSync(resolve(import.meta.dirname, "tokens.css"), "utf8")
+
+type Rgb = [number, number, number]
 
 function value(name: string) {
   const match = new RegExp(`--${name}:\\s*([^;]+);`).exec(tokens)
   if (!match) throw new Error(`no --${name}`)
-  return match[1]!.trim()
+  return group(match).trim()
 }
 
-// Returns the light and the dark colour of a token as [r, g, b].
-function rgb(name: string): [number[], number[]] {
-  const raw = value(name)
-  const both = /^light-dark\((.*)\)$/.exec(raw)
-  if (both) {
-    const [light, dark] = both[1]!.split(/,(?![^(]*\))/).map((part) => colour(part.trim()))
-    return [light!, dark!]
-  }
-  return [colour(raw), colour(raw)]
-}
-
-function colour(raw: string): number[] {
+function colour(raw: string): Rgb {
   const hex = /^#([0-9a-f]{6})$/i.exec(raw)
-  if (hex) return [0, 2, 4].map((at) => parseInt(hex[1]!.slice(at, at + 2), 16))
+  if (hex) {
+    const n = parseInt(group(hex), 16)
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255]
+  }
   const palette = /^rgb\(var\(--([\w-]+)\)\)$/.exec(raw)
-  if (palette) return value(palette[1]!).split(",").map(Number)
+  if (palette) {
+    const [r, g, b, ...rest] = value(group(palette)).split(",").map(Number)
+    if (r === undefined || g === undefined || b === undefined || rest.length)
+      throw new Error(`not three channels: ${raw}`)
+    return [r, g, b]
+  }
   throw new Error(`cannot read ${raw}`)
 }
 
-function luminance(channels: number[]) {
-  const [r, g, b] = channels.map((channel) => {
+// Returns the light and the dark colour of a token.
+function rgb(name: string): [Rgb, Rgb] {
+  const raw = value(name)
+  const both = /^light-dark\((.*)\)$/.exec(raw)
+  if (!both) return [colour(raw), colour(raw)]
+  const [light, dark, ...rest] = group(both)
+    .split(/,(?![^(]*\))/)
+    .map((part) => colour(part.trim()))
+  if (!light || !dark || rest.length) throw new Error(`not a light and a dark colour: ${raw}`)
+  return [light, dark]
+}
+
+function luminance([r, g, b]: Rgb) {
+  const linear = (channel: number) => {
     const c = channel / 255
     return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4
-  })
-  return 0.2126 * r! + 0.7152 * g! + 0.0722 * b!
+  }
+  return 0.2126 * linear(r) + 0.7152 * linear(g) + 0.0722 * linear(b)
 }
 
-function ratio(a: number[], b: number[]) {
-  const [high, low] = [luminance(a), luminance(b)].sort((x, y) => y - x)
-  return (high! + 0.05) / (low! + 0.05)
+function ratio(a: Rgb, b: Rgb) {
+  const [x, y] = [luminance(a), luminance(b)]
+  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05)
 }
 
-const white = [255, 255, 255]
+const white: Rgb = [255, 255, 255]
 
 test("white text on each destructive stop is 4.5:1 or more", () => {
   for (const stop of [

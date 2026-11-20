@@ -25,7 +25,8 @@ export function kernName(el: HTMLElement): void {
   }
   const style = getComputedStyle(el)
   const size = parseFloat(style.fontSize)
-  const ctx = document.createElement("canvas").getContext("2d")!
+  const ctx = document.createElement("canvas").getContext("2d")
+  if (!ctx) throw new Error("no 2d canvas context")
   ctx.font = `${style.fontWeight} ${size}px ${style.fontFamily}`
   const width = (text: string) => ctx.measureText(text).width
   // Each letter is a span of its own, which drops the font's kerning: add it back.

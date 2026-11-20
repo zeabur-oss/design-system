@@ -5,6 +5,7 @@ import { resolve } from "node:path"
 import { createElement as h } from "react"
 import { renderToStaticMarkup } from "react-dom/server"
 
+import { group } from "../test-support"
 import { usePresence } from "./presence"
 import { Skeleton } from "./skeleton"
 import { SwapText } from "./swap-text"
@@ -38,7 +39,7 @@ describe("motion", () => {
   test("under reduced motion, no utility moves", () => {
     const moves = /\b(translate|scale|rotate|filter|width|height|d)\b/
     const transitions = (css: string) =>
-      [...css.matchAll(/transition(?:-property)?:([^;]+);/g)].map((match) => match[1]!)
+      [...css.matchAll(/transition(?:-property)?:([^;]+);/g)].map((match) => group(match))
     const css = read("src/utilities.css")
     let moving = 0
     for (const block of css.split("\n@utility ").slice(1)) {

@@ -2,6 +2,8 @@ import { describe, expect, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { resolve } from "node:path"
 
+import { group } from "./test-support"
+
 function lightDarkCalls(css: string) {
   const code = css.replace(/\/\*[\s\S]*?\*\//g, "")
   const calls: string[] = []
@@ -39,7 +41,7 @@ const uncommented = (css: string) => css.replace(/\/\*[\s\S]*?\*\//g, "")
 function textRoles(css: string) {
   const roles = new Set<string>()
   for (const block of uncommented(css).matchAll(/@theme[^{]*\{([^}]*)\}/g))
-    for (const match of block[1]!.matchAll(/--text-([a-z]+):/g)) roles.add(match[1]!)
+    for (const match of group(block).matchAll(/--text-([a-z]+):/g)) roles.add(group(match))
   return [...roles]
 }
 
