@@ -5,9 +5,9 @@
   <img alt="Zeabur Design System：做出和 Zeabur 一樣的畫面，亮色暗色都對。四個 token 的亮色與暗色。" src="docs/images/cover-zh-TW-light.avif">
 </picture>
 
-# Zeabur design system
+# Zeabur Design System
 
-Zeabur 為 React、[Base UI](https://base-ui.com) 和 [Tailwind CSS v4](https://tailwindcss.com) 做的元件與樣式。做出和 Zeabur 一樣的畫面，亮色暗色都對。
+Zeabur 為 React、[Base UI](https://base-ui.com) 和 [Tailwind CSS v4](https://tailwindcss.com) 做的元件與樣式。做出和 Zeabur 一樣的畫面，亮色暗色都對。Zeabur 開源版、Zeabur Identity 的登入頁和 [oss.zeabur.com](https://oss.zeabur.com/zh-TW/) 都用它。
 
 - **Token**：Zeabur 的顏色、文字角色、狀態色、陰影和動態效果，各有亮色和暗色的值，並對應到 [shadcn/ui](https://ui.shadcn.com) 的主題變數。
 - **元件**：按鈕、欄位、選單、對話框、表格、分頁、導覽、圖表等，每個元件一個模組，以 Base UI 為底。在 Storybook 瀏覽。

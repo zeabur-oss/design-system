@@ -5,10 +5,11 @@
   <img alt="Zeabur Design System: build screens that look like Zeabur, right in light and dark. Four tokens with their light and dark colours." src="docs/images/cover-light.avif">
 </picture>
 
-# Zeabur design system
+# Zeabur Design System
 
 Zeabur's components and styles for React, [Base UI](https://base-ui.com) and
 [Tailwind CSS v4](https://tailwindcss.com). Build screens that look like Zeabur, in light and dark.
+Zeabur, Zeabur Identity's sign-in pages and [oss.zeabur.com](https://oss.zeabur.com) use it.
 
 - **Tokens**: Zeabur's colours, type roles, status colours, shadows and motion, each with a light
   and a dark value, and [shadcn/ui](https://ui.shadcn.com)'s theme variables mapped onto them.

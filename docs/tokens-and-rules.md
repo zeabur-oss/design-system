@@ -1,6 +1,6 @@
 # Tokens and rules
 
-For people who change the design system. How to use it is in the [README](../README.md).
+For people who change the Zeabur Design System. How to use it is in the [README](../README.md).
 
 Every size, colour, shadow, motion and layer in a component is a token in `src/tokens.css` (light
 and dark), and `bun run lint` enforces it. When a design needs something new, add a token (or a
