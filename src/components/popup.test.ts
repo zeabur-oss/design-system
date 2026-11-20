@@ -6,7 +6,7 @@ import { renderToStaticMarkup } from "react-dom/server"
 import { Dialog, DialogContent, DialogTitle } from "./dialog"
 import { Menu, MenuContent, MenuItem, MenuTrigger } from "./menu"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
-import { loader, pendingTriggerProps, popups } from "./popup"
+import { loader, pendingTriggerProps, popups, type TriggerKeyPress } from "./popup"
 import { Tooltip } from "./tooltip"
 
 const html = (element: ReactElement) =>
@@ -36,14 +36,23 @@ const popover = (props: { open?: boolean }) =>
 const tooltip = () =>
   h(Tooltip, { content: "Light", children: h("button", { type: "button" }, "T") })
 
+type PendingHandlers = ReturnType<typeof pendingTriggerProps>
+
+const isPending = (props: object): props is PendingHandlers =>
+  "onClick" in props &&
+  typeof props.onClick === "function" &&
+  "onKeyDown" in props &&
+  typeof props.onKeyDown === "function"
+
 function pendingHandlers(trigger: (render: ReactElement) => ReactElement) {
-  let handlers: Record<string, unknown> = {}
-  const capture = ((props: Record<string, unknown>) => {
-    handlers = props
-    return h("span", props)
-  }) as unknown as ReactElement
-  renderToStaticMarkup(trigger(capture))
-  return handlers as ReturnType<typeof pendingTriggerProps>
+  let captured: object = {}
+  const Probe = (props: object) => {
+    captured = props
+    return h("span")
+  }
+  renderToStaticMarkup(trigger(h(Probe)))
+  if (!isPending(captured)) throw new Error("the trigger did not render its handlers")
+  return captured
 }
 
 const key = (name: string, tagName: string) => {
@@ -52,7 +61,7 @@ const key = (name: string, tagName: string) => {
     key: name,
     currentTarget: { tagName },
     preventDefault: () => (prevented = true),
-  } as unknown as Parameters<ReturnType<typeof pendingTriggerProps>["onKeyDown"]>[0]
+  } satisfies TriggerKeyPress
   return { event, prevented: () => prevented }
 }
 
