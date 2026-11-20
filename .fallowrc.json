@@ -34,6 +34,7 @@
         "*.css",
         "src/*.css",
         "src/*.test.ts",
+        "src/test-support.ts",
         "scripts/**",
         "*.config.ts",
         "vendor/**"

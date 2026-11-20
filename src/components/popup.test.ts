@@ -67,7 +67,7 @@ const key = (name: string, tagName: string) => {
 
 describe("popups before their code arrives", () => {
   // Order matters: the first tests run before the code is loaded.
-  let before: Record<string, string>
+  let before: { menu: string; popover: string; tooltip: string }
 
   test("the code is not there yet", () => {
     expect(popups.get()).toBe(undefined)
@@ -75,8 +75,8 @@ describe("popups before their code arrives", () => {
     expect(before.menu).toBe(
       '<button aria-expanded="false" aria-haspopup="menu" aria-label="Account" data-slot="menu-trigger" type="button">A</button>',
     )
-    expect(before.popover!).toMatch(/^<button aria-expanded="false" aria-haspopup="dialog" /)
-    expect(before.menu! + before.popover!).not.toMatch(/Sign out|English/)
+    expect(before.popover).toMatch(/^<button aria-expanded="false" aria-haspopup="dialog" /)
+    expect(before.menu + before.popover).not.toMatch(/Sign out|English/)
   })
 
   test("a press asks to open, by click, or Enter or Space on an element that is no button", () => {

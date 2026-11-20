@@ -209,37 +209,43 @@ try {
         }
         await tab.$eval(".name", kernName)
         // The name fills the width, grown or shrunk, with its capitals 16 px under the rule.
-        await tab.evaluate(() => {
-          const rule = document.querySelector(".rule")!.getBoundingClientRect().bottom
-          const el = document.querySelector<HTMLElement>(".name")!
-          const style = getComputedStyle(el)
-          const size = (parseFloat(style.fontSize) * (1280 - 2 * 44)) / el.offsetWidth
-          el.style.fontSize = `${size}px`
-          const ctx = document.createElement("canvas").getContext("2d")!
-          ctx.font = `${style.fontWeight} ${size}px ${style.fontFamily}`
-          const m = ctx.measureText("H")
-          const ascent =
-            (size - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 +
-            m.fontBoundingBoxAscent
-          el.style.top = `${rule + 16 - ascent + m.actualBoundingBoxAscent}px`
-        })
-        const overflow: string[] = await tab.evaluate(() => {
-          const rule = document.querySelector(".rule")!.getBoundingClientRect().top
-          const headline = document.querySelector(".headline")!.getBoundingClientRect().bottom
-          const box = document.querySelector(".slab")!
-          const slab = box.getBoundingClientRect()
-          const right = Math.max(
-            ...[...document.querySelectorAll(".slab *")].map(
-              (el) => el.getBoundingClientRect().right,
-            ),
-          )
-          const checks: [boolean, string][] = [
-            [headline > rule - 16, "the headline reaches the rule"],
-            [right > slab.right - 48 + 0.5, "the slab runs into its right margin"],
-            [box.scrollHeight > box.clientHeight, "the slab is too full"],
-          ]
-          return checks.filter(([hit]) => hit).map(([, why]) => why)
-        })
+        const ruleBottom = await tab.$eval(".rule", (el) => el.getBoundingClientRect().bottom)
+        await tab.$eval(
+          ".name",
+          (el, rule) => {
+            if (!(el instanceof HTMLElement)) throw new Error(".name is not an HTML element")
+            const style = getComputedStyle(el)
+            const size = (parseFloat(style.fontSize) * (1280 - 2 * 44)) / el.offsetWidth
+            el.style.fontSize = `${size}px`
+            const ctx = document.createElement("canvas").getContext("2d")
+            if (!ctx) throw new Error("no 2d canvas context")
+            ctx.font = `${style.fontWeight} ${size}px ${style.fontFamily}`
+            const m = ctx.measureText("H")
+            const ascent =
+              (size - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 +
+              m.fontBoundingBoxAscent
+            el.style.top = `${rule + 16 - ascent + m.actualBoundingBoxAscent}px`
+          },
+          ruleBottom,
+        )
+        const ruleTop = await tab.$eval(".rule", (el) => el.getBoundingClientRect().top)
+        const headline = await tab.$eval(".headline", (el) => el.getBoundingClientRect().bottom)
+        const slab = await tab.$eval(".slab", (box) => ({
+          right: box.getBoundingClientRect().right,
+          full: box.scrollHeight > box.clientHeight,
+          reach: Math.max(
+            ...[...box.querySelectorAll("*")].map((el) => el.getBoundingClientRect().right),
+          ),
+        }))
+        const overflow = (
+          [
+            [headline > ruleTop - 16, "the headline reaches the rule"],
+            [slab.reach > slab.right - 48 + 0.5, "the slab runs into its right margin"],
+            [slab.full, "the slab is too full"],
+          ] satisfies [boolean, string][]
+        )
+          .filter(([hit]) => hit)
+          .map(([, why]) => why)
         if (overflow.length) console.warn(`${name} ${lang} ${theme}: ${overflow.join(", ")}`)
         const png = await tab.screenshot({ type: "png" })
         await tab.close()
