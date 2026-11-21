@@ -7,11 +7,11 @@
 
 # Zeabur Design System
 
-Zeabur 为 React、[Base UI](https://base-ui.com) 和 [Tailwind CSS v4](https://tailwindcss.com) 做的组件与样式。做出和 Zeabur 一样的界面，亮色暗色都对。Zeabur 开源版、Zeabur Identity 的登录页和 [oss.zeabur.com](https://oss.zeabur.com/zh-CN/) 都用它。
+Zeabur 开源版给 React、[Base UI](https://base-ui.com) 和 [Tailwind CSS v4](https://tailwindcss.com) 用的组件与样式。做出和 Zeabur 开源版一样的界面，亮色暗色都对。Zeabur 开源版、Zeabur Identity 的登录页和 [oss.zeabur.com](https://oss.zeabur.com/zh-CN/) 都用它。
 
-- **Token**：Zeabur 的颜色、文字角色、状态色、阴影和动效，各有亮色和暗色的值，并对应到 [shadcn/ui](https://ui.shadcn.com) 的主题变量。
+- **Token**：Zeabur 开源版的颜色、文字角色、状态色、阴影和动效，各有亮色和暗色的值，并对应到 [shadcn/ui](https://ui.shadcn.com) 的主题变量。
 - **组件**：按钮、字段、菜单、对话框、表格、标签页、导航、图表等，每个组件一个模块，以 Base UI 为底。在 Storybook 浏览。
-- **工具类**：Zeabur 的按钮样式、导航行、毛玻璃表面和加载圆点。
+- **工具类**：Zeabur 开源版的按钮样式、导航行、毛玻璃表面和加载圆点。
 - **字体**：Geist 和 Geist Mono，自行托管（SIL Open Font License）。
 
 在 Storybook 预览所有组件（工具栏可切换亮色和暗色）：
