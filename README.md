@@ -7,15 +7,15 @@
 
 # Zeabur Design System
 
-Zeabur's components and styles for React, [Base UI](https://base-ui.com) and
-[Tailwind CSS v4](https://tailwindcss.com). Build screens that look like Zeabur, in light and dark.
-Zeabur, Zeabur Identity's sign-in pages and [oss.zeabur.com](https://oss.zeabur.com) use it.
+Components and styles of Zeabur OSS for React, [Base UI](https://base-ui.com) and
+[Tailwind CSS v4](https://tailwindcss.com). Build screens that look like Zeabur OSS, in light and dark.
+Zeabur OSS, Zeabur Identity's sign-in pages and [oss.zeabur.com](https://oss.zeabur.com) use it.
 
-- **Tokens**: Zeabur's colours, type roles, status colours, shadows and motion, each with a light
+- **Tokens**: the colours, type roles, status colours, shadows and motion of Zeabur OSS, each with a light
   and a dark value, and [shadcn/ui](https://ui.shadcn.com)'s theme variables mapped onto them.
 - **Components**: buttons, fields, menus, dialogs, tables, tabs, navigation, charts and more, one
   module each, on Base UI. Browse them in Storybook.
-- **Utilities**: Zeabur's button surfaces, navigation rows, frosted surface and loading dots.
+- **Utilities**: the button surfaces, navigation rows, frosted surface and loading dots of Zeabur OSS.
 - **Fonts**: Geist and Geist Mono, self-hosted (SIL Open Font License).
 
 Preview everything in Storybook (light and dark in its toolbar):

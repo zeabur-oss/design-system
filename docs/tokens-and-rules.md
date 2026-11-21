@@ -62,7 +62,7 @@ only `src/tokens.css` names them.
   `label-has-associated-control` on `Label`, which gets its control from its caller); a disable
   comment that disables nothing fails too.
 
-Apps run the same rules on their code (the Zeabur app's `.oxlintrc.json` uses this setup with
+Apps run the same rules on their code (the Zeabur OSS app's `.oxlintrc.json` uses this setup with
 `componentImports: ["^@zeabur-oss/design-system/components/"]`). The package exports the `zeabur/*`
 rules as `@zeabur-oss/design-system/lint`, for an app's `jsPlugins`.
 

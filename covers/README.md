@@ -39,7 +39,7 @@ Covers: `zeabur`, `zeatend`, `catalog`, `builder`, `identity`, `design-system`.
 - **Words.** By `zeabur/docs/wording.md` and the `zeabur-writing` skill. Claim only what the
   repository does. No Enterprise, no SaaS.
 - **Slab.** One flow from what the reader has to what they get, in the product's own controls
-  and states: Zeabur's three ways to deploy end in "Running", Identity's sign-in page shows its
+  and states: the three ways to deploy in Zeabur OSS end in "Running", Identity's sign-in page shows its
   sign-in buttons. No sentence on the slab.
 - **Controls.** A control (`control()`) shows a label of the product's UI, quoted from its
   catalogue with `quote()`; render.ts refuses a control without one. Something that is not a
