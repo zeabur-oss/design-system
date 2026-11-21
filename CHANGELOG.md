@@ -2,6 +2,38 @@
 
 All notable changes to this project are documented here. Versions follow [Semantic Versioning](https://semver.org/); each section comes from the change files in `.changeset/` (CONTRIBUTING.md, "Changelog and releases").
 
+## 0.1.6 (2026-11-21)
+
+### Features
+
+#### Every `cva` is in `variants/`
+
+`@zeabur-oss/design-system/variants/<name>` now has the classes of `Avatar`, `Collapsible`,
+`Empty`, `PageColumn`, `Popover`, `SectionHeader`, `Select`, `Sidebar`, `Skeleton`, `Table`, `Tabs`,
+`Textarea`, `Timeline` and `Toggle` as well, so a server-rendered page can call them without React.
+The components still export the same names.
+
+#### One tone module; `Banner` is gone, and synonym variants are removed
+
+The status tones are one module, `variants/tone.ts`, shared by `Alert`, `Badge`, `Stat`,
+`SummaryCard`, `TimelineItem` and `Meter`. Every look has one name now.
+
+Rename these in your app:
+
+| Before                                                                 | After                                                      |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `Banner`, `BannerTitle`, `BannerDescription`, `bannerVariants`         | `Alert`, `AlertTitle`, `AlertDescription`, `alertVariants` |
+| `<Banner>` (default)                                                   | `<Alert variant="info">`                                   |
+| `<Banner variant="tips">`                                              | `<Alert>`                                                  |
+| `<Banner variant="warn">`                                              | `<Alert variant="warn">`                                   |
+| `<Button variant="primary">`, `buttonVariants({ variant: "primary" })` | `variant="default"`                                        |
+| `<Badge variant="destructive">`                                        | `<Badge variant="fail">`                                   |
+| `<TimelineItem tone="neutral">`                                        | `<TimelineItem tone="idle">` (the default)                 |
+
+`Banner` drew its icon at the left edge; `Alert` puts it in a grid column, a few pixels
+different. `Alert` gives its icon the text colour in the neutral variant, where `Banner` `tips`
+used the secondary colour.
+
 ## 0.1.5 (2026-11-19)
 
 ### Fixes
