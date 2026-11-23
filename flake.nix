@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     # The base shell of every zeabur-oss repository: Bun, the release tools and the shared linters.
     oss = {
-      url = "github:zeabur-oss/.github/01d7c04f44028272077eaf4ab97f4de5257aad65";
+      url = "github:zeabur-oss/.github/993db7daf21a752dc7d3940f227e03478ee613cc";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
