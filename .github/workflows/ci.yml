@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   check:
-    runs-on: instabox-small
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -28,7 +28,7 @@ jobs:
       - run: nix develop -c scripts/ci/check.sh
 
   test:
-    runs-on: instabox-small
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -38,7 +38,7 @@ jobs:
       - run: nix develop -c scripts/ci/test.sh
 
   storybook:
-    runs-on: instabox-small
+    runs-on: ubuntu-26.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -52,7 +52,7 @@ jobs:
     name: ci / ok
     if: always()
     needs: [check, test, storybook]
-    runs-on: instabox-small
+    runs-on: ubuntu-slim
     timeout-minutes: 5
     steps:
       - if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
